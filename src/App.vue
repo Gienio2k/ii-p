@@ -24,24 +24,24 @@
             </v-list-item-content>
           </v-list-item>
         </router-link>
-        <div id="theme_change_btn">
-          <v-list-item>
-            <v-list-item-action>
-              <v-switch @click="theme_change" icon v-model="$vuetify.theme.dark"></v-switch>
+        <v-list-item id="theme_change_btn">
+          <v-list-item-action>
+            <div class="theme_change_contents">
+              <v-switch inset @click="theme_change" icon v-model="$vuetify.theme.dark"></v-switch>
               <v-icon>mdi-brightness-4</v-icon>
-            </v-list-item-action>
-          </v-list-item>
-        </div>
+            </div>
+          </v-list-item-action>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar app clipped-left color="dark">
-      <v-app-bar-nav-icon large @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+    <v-app-bar app clipped-left color="blue darken-4">
+      <v-app-bar-nav-icon dark large @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <h1 :class="[$vuetify.theme.dark ? 'dark_logo' : 'light_logo', 'logo']">IIP</h1>
     </v-app-bar>
 
     <v-main>
       <br />
-      <router-view />
+      <router-view :drawer="drawer" />
     </v-main>
   </v-app>
 </template>
@@ -80,34 +80,19 @@ export default ***REMOVED***
 </script>
 
 <style lang="scss">
+@import "./assets/stroke.scss";
+
 @font-face ***REMOVED***
   font-family: RobotoSlab;
   src: url(./assets/RobotoSlab-Regular.ttf);
 ***REMOVED***
 
-/// Stroke font-character
-/// @param  ***REMOVED***Integer***REMOVED*** $stroke - Stroke width
-/// @param  ***REMOVED***Color***REMOVED***   $color  - Stroke color
-/// @return ***REMOVED***List***REMOVED***            - text-shadow list
-@function stroke($stroke, $color) ***REMOVED***
-  $shadow: ();
-  $from: $stroke * -1;
-  @for $i from $from through $stroke ***REMOVED***
-    @for $j from $from through $stroke ***REMOVED***
-      $shadow: append($shadow, $i * 1px $j * 1px 0 $color, comma);
-    ***REMOVED***
-  ***REMOVED***
-  @return $shadow;
-***REMOVED***
-/// Stroke font-character
-/// @param  ***REMOVED***Integer***REMOVED*** $stroke - Stroke width
-/// @param  ***REMOVED***Color***REMOVED***   $color  - Stroke color
-/// @return ***REMOVED***Style***REMOVED***           - text-shadow
-@mixin stroke($stroke, $color) ***REMOVED***
-  text-shadow: stroke($stroke, $color);
+.v-application ***REMOVED***
+  background-color: var(--v-background-base) !important;
 ***REMOVED***
 
 .logo ***REMOVED***
+  color: #1a1a1a;
   font-size: 72px;
   font-family: RobotoSlab;
   margin-top: 45px;
@@ -117,17 +102,33 @@ export default ***REMOVED***
 
 .light_logo ***REMOVED***
   @include stroke(5px, #ffffff);
-  color: #272727;
+  color: #0d47a1;
 ***REMOVED***
 
 .dark_logo ***REMOVED***
-  @include stroke(5px, #272727);
+  @include stroke(5px, #0d47a1);
   color: #ffffff;
 ***REMOVED***
 
 #theme_change_btn ***REMOVED***
-  float: right;
-  align-self: flex-end;
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  right: 50%;
+  transform: translateX(-50%);
+***REMOVED***
+
+.theme_change_contents ***REMOVED***
+  position: absolute;
+  left: -100%;
+  .v-input ***REMOVED***
+    position: absolute;
+    left: 40px;
+  ***REMOVED***
+  .v-icon ***REMOVED***
+    position: absolute;
+    top: -2px;
+  ***REMOVED***
 ***REMOVED***
 
 a ***REMOVED***
