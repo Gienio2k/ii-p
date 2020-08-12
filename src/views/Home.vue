@@ -1,8 +1,17 @@
 <template>
   <div class="home">
-    <div id="info">
-      <h1 class="header">To jest strona internetowa klasy IIP!</h1>
-      <p>***REMOVED******REMOVED*** drawer ? 'Po więcej funkcji spójrz na menu po lewej' : 'Po więcej funkcji otwórz menu w lewym górnym rogu'***REMOVED******REMOVED***</p>
+    <div id="home_wrapper">
+      <div id="info">
+        <h1 class="header">To jest strona internetowa klasy IIP!</h1>
+        <v-card
+          outlined
+          style="padding: 10px; margin-top: 30px; max-width: 500px; margin-left: auto; margin-right: auto;"
+        >
+          <p
+            style="margin: 0;"
+          >***REMOVED******REMOVED*** drawer ? 'Po więcej funkcji spójrz na menu po lewej' : 'Po więcej funkcji otwórz menu w lewym górnym rogu'***REMOVED******REMOVED***</p>
+        </v-card>
+      </div>
     </div>
   </div>
 </template>
@@ -20,19 +29,31 @@ export default ***REMOVED***
 <style scoped lang="scss">
 @import "../assets/stroke.scss";
 
-#info ***REMOVED***
-  margin: 30px;
+#home_wrapper ***REMOVED***
+  margin-top: -25px;
+  height: calc(100vh - 56px);
   text-align: center;
   user-select: none;
-  p ***REMOVED***
-    margin-top: 20px;
-  ***REMOVED***
-  .header ***REMOVED***
-    width: 100%;
-    font-size: 5vh;
-    font-stretch: 2px;
-    color: white;
-    @include stroke(1px, #0d47a1);
+  background-image: url(../assets/school.jpg);
+  backdrop-filter: blur(4px);
+  background-size: cover;
+  background-position: center;
+  #info ***REMOVED***
+    padding: 20px;
+    padding-top: 100px;
+    background-color: transparent;
+    .header ***REMOVED***
+      width: 100%;
+      top: 50%;
+      bottom: 50%;
+      font-size: 5vh;
+      font-stretch: 2px;
+      color: white;
+      @include stroke(3px, #0d47a1);
+    ***REMOVED***
+    p ***REMOVED***
+      margin-top: 20px;
+    ***REMOVED***
   ***REMOVED***
 ***REMOVED***
 </style>

@@ -8,7 +8,7 @@ Vue.use(VueRouter);
 const routes = [
   ***REMOVED***
     path: "/",
-    name: "Główna",
+    name: "Home",
     component: Home,
   ***REMOVED***,
   ***REMOVED***

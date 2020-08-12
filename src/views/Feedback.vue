@@ -4,7 +4,7 @@
       <h2>Przekaż informację przewodniczącemu</h2>
       <br />
       <div class="ckeditor">
-        <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
+        <ckeditor :editor="editor" v-model="editor_data" :config="editor_config"></ckeditor>
       </div>
       <v-dialog persistent v-model="dialog" width="500">
         <template v-slot:activator="***REMOVED*** on, attrs ***REMOVED***">
@@ -38,11 +38,12 @@ export default ***REMOVED***
     return ***REMOVED***
       dialog: false,
       editor: ClassicEditor,
-      editorData: "",
-      editorConfig: ***REMOVED***
-        // The configuration of the editor.
-      ***REMOVED***,
+      editor_data: this.$store.state.feedback_data,
+      editor_config: ***REMOVED******REMOVED***,
     ***REMOVED***;
+  ***REMOVED***,
+  beforeDestroy() ***REMOVED***
+    this.$store.state.feedback_data = this.editor_data;
   ***REMOVED***,
 ***REMOVED***;
 </script>
