@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Feedback from "../views/Feedback.vue";
+import AdminPanel from "../views/AdminPanel.vue";
 
 Vue.use(VueRouter);
 
@@ -15,6 +16,11 @@ const routes = [
     path: "/feedback",
     name: "Feedback",
     component: Feedback,
+  ***REMOVED***,
+  ***REMOVED***
+    path: "/admin",
+    name: "AdminPanel",
+    component: AdminPanel,
   ***REMOVED***,
 ];
 

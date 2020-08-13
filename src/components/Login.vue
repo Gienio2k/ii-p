@@ -113,15 +113,27 @@
       </v-card>
     </v-dialog>
     <div class="account" v-else>
-      <p>***REMOVED******REMOVED*** $store.state.user ***REMOVED******REMOVED***</p>
-      <v-btn class="signout_btn" @click="signout">WYLOGUJ</v-btn>
+      <strong class="d-flex flex-column">***REMOVED******REMOVED*** rank ***REMOVED******REMOVED***</strong>
+      <v-chip
+        ><p>***REMOVED******REMOVED*** $store.state.user ***REMOVED******REMOVED***</p></v-chip
+      >
+      <v-btn class="signout_btn d-flex flex-column" @click="signout"
+        >WYLOGUJ</v-btn
+      >
     </div>
+    <v-btn
+      v-if="$store.state.user_rank == 'admin'"
+      class="admin_btn"
+      @click="$router.push('/admin')"
+      >ADMIN PANEL</v-btn
+    >
   </div>
 </template>
 
 <script>
 import firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/database";
 
 export default ***REMOVED***
   name: "Login",
@@ -205,6 +217,21 @@ export default ***REMOVED***
               alt_this.login_err_txt = "Podany login jest zajęty";
             ***REMOVED***
             console.error(errorCode, "\n", errorMessage);
+            return;
+          ***REMOVED***)
+          .then(() => ***REMOVED***
+            firebase
+              .database()
+              .ref(
+                "/users/" +
+                  firebase
+                    .auth()
+                    .currentUser.email.substring(
+                      firebase.auth().currentUser.email.length - 9,
+                      0
+                    )
+              )
+              .update(***REMOVED*** rank: "user" ***REMOVED***);
           ***REMOVED***);
       ***REMOVED***
     ***REMOVED***,
@@ -213,6 +240,7 @@ export default ***REMOVED***
     ***REMOVED***,
   ***REMOVED***,
   created() ***REMOVED***
+    let alt_this = this;
     firebase.auth().onAuthStateChanged((firebaseUser) => ***REMOVED***
       if (firebaseUser) ***REMOVED***
         this.$store.commit("setState", ***REMOVED*** name: "logged_in", val: true ***REMOVED***);
@@ -220,9 +248,26 @@ export default ***REMOVED***
           name: "user",
           val: firebaseUser.email.substring(firebaseUser.email.length - 9, 0),
         ***REMOVED***);
+        firebase
+          .database()
+          .ref(
+            "/users/" +
+              firebaseUser.email.substring(firebaseUser.email.length - 9, 0) +
+              "/rank"
+          )
+          .on("value", function(snapshot) ***REMOVED***
+            alt_this.$store.commit("setState", ***REMOVED***
+              name: "user_rank",
+              val: snapshot.val(),
+            ***REMOVED***);
+          ***REMOVED***);
       ***REMOVED*** else ***REMOVED***
         this.$store.commit("setState", ***REMOVED*** name: "logged_in", val: false ***REMOVED***);
         this.$store.commit("setState", ***REMOVED*** name: "user", val: "" ***REMOVED***);
+        this.$store.commit("setState", ***REMOVED***
+          name: "user_rank",
+          val: "",
+        ***REMOVED***);
       ***REMOVED***
       this.login_login = "";
       this.login_passwd = "";
@@ -231,6 +276,17 @@ export default ***REMOVED***
       this.signup_passwd2 = "";
       this.login_dialog = false;
     ***REMOVED***);
+  ***REMOVED***,
+  computed: ***REMOVED***
+    rank: function() ***REMOVED***
+      switch (this.$store.state.user_rank) ***REMOVED***
+        case "user":
+          return "Użytkownik";
+        case "admin":
+          return "Administrator";
+      ***REMOVED***
+      return "";
+    ***REMOVED***,
   ***REMOVED***,
 ***REMOVED***;
 </script>
@@ -293,5 +349,25 @@ export default ***REMOVED***
 ***REMOVED***
 .account ***REMOVED***
   text-align: center;
+  p ***REMOVED***
+    font-size: 20px;
+    padding-top: 13px;
+  ***REMOVED***
+  .v-chip ***REMOVED***
+    margin-top: 10px;
+  ***REMOVED***
+  .v-btn ***REMOVED***
+    margin-top: 20px;
+    left: 50%;
+    right: 50%;
+    transform: translateX(-50%);
+  ***REMOVED***
+***REMOVED***
+
+.admin_btn ***REMOVED***
+  margin-top: 10px;
+  left: 50%;
+  right: 50%;
+  transform: translateX(-50%);
 ***REMOVED***
 </style>

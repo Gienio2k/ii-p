@@ -8,6 +8,7 @@ export default new Vuex.Store(***REMOVED***
     feedback_data: "",
     logged_in: false,
     user: "",
+    user_rank: "",
   ***REMOVED***,
   mutations: ***REMOVED***
     setState(state, payload) ***REMOVED***
