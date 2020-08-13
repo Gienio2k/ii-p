@@ -55,6 +55,7 @@
                 </v-text-field>
                 <v-text-field
                   label="Hasło"
+                  @keyup.enter="login"
                   @keydown="passwd_err_txt = 'Wpisz hasło'"
                   type="password"
                   class="login_passwd_field"
@@ -96,6 +97,7 @@
                 </v-text-field>
                 <v-text-field
                   label="Powtórz hasło"
+                  @keyup.enter="signup"
                   type="password"
                   class="signup_passwd2_field"
                   v-model="signup_passwd2"
@@ -222,6 +224,12 @@ export default ***REMOVED***
         this.$store.commit("setState", ***REMOVED*** name: "logged_in", val: false ***REMOVED***);
         this.$store.commit("setState", ***REMOVED*** name: "user", val: "" ***REMOVED***);
       ***REMOVED***
+      this.login_login = "";
+      this.login_passwd = "";
+      this.signup_login = "";
+      this.signup_passwd = "";
+      this.signup_passwd2 = "";
+      this.login_dialog = false;
     ***REMOVED***);
   ***REMOVED***,
 ***REMOVED***;

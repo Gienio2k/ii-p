@@ -26,6 +26,7 @@ const firebaseConfig = ***REMOVED***
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+
 new Vue(***REMOVED***
   router,
   store,
