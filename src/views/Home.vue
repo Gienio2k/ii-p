@@ -1,8 +1,9 @@
 <template>
   <div class="home">
     <div id="home_wrapper">
+      <div class="image"></div>
       <div id="info">
-        <h1 class="header">To jest strona internetowa klasy IIP!</h1>
+        <h1 class="header">Strona internetowa klasy IIP!</h1>
         <v-card
           outlined
           style="padding: 10px; margin-top: 30px; max-width: 500px; margin-left: auto; margin-right: auto;"
@@ -34,11 +35,18 @@ export default ***REMOVED***
   height: calc(100vh - 56px);
   text-align: center;
   user-select: none;
-  background-image: url(../assets/school.jpg);
-  backdrop-filter: blur(4px);
-  background-size: cover;
-  background-position: center;
+  .image ***REMOVED***
+    position: absolute;
+    background-image: url(../assets/school.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+    filter: blur(2.5px);
+  ***REMOVED***
   #info ***REMOVED***
+    position: relative;
+    z-index: 2;
     padding: 20px;
     padding-top: 100px;
     background-color: transparent;
@@ -46,8 +54,8 @@ export default ***REMOVED***
       width: 100%;
       top: 50%;
       bottom: 50%;
-      font-size: 5vh;
-      font-stretch: 2px;
+      font-size: 50px;
+      line-height: 120%;
       color: white;
       @include stroke(3px, #0d47a1);
     ***REMOVED***
