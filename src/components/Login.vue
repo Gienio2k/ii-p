@@ -1,34 +1,27 @@
 <template
-  ><div>
+  >
+  <div>
     <v-dialog
-      v-if="!$store.state.logged_in"
+      v-if="!$store.state.loggedIn"
       fullscreen
       hide-overlay
       transition="dialog-bottom-transition"
-      v-model="login_dialog"
+      v-model="loginDialog"
     >
       <template v-slot:activator="***REMOVED*** on, attrs ***REMOVED***">
+        <v-btn block outlined class="loginBtn" v-bind="attrs" v-on="on" @click="tab = 0">zaloguj się</v-btn>
         <v-btn
           block
           outlined
-          class="login_btn"
-          v-bind="attrs"
-          v-on="on"
-          @click="tab = 0"
-          >zaloguj się</v-btn
-        ><v-btn
-          block
-          outlined
-          class="signup_btn"
+          class="signupBtn"
           v-bind="attrs"
           v-on="on"
           @click="tab = 1"
-          >utwórz konto</v-btn
-        >
+        >utwórz konto</v-btn>
       </template>
       <v-card>
         <v-toolbar dark color="blue darken-4">
-          <v-btn icon dark @click="login_dialog = false">
+          <v-btn icon dark @click="loginDialog = false">
             <v-icon>mdi-close</v-icon>
           </v-btn>
           <v-tabs v-model="tab">
@@ -39,59 +32,57 @@
 
         <v-tabs-items v-model="tab">
           <v-tab-item>
-            <v-form ref="login_form" class="login_form" v-model="login_valid">
-              <v-card outlined class="login_card">
-                <v-icon class="decorative_login_icon" x-large
-                  >mdi-account-circle</v-icon
-                >
+            <v-form ref="loginForm" class="loginForm" v-model="loginValid">
+              <v-card outlined class="loginCard">
+                <v-icon class="decorativeLoginIcon" x-large>mdi-account-circle</v-icon>
                 <v-text-field
                   label="Login"
-                  @keydown="login_err_txt = 'Wpisz login'"
-                  class="login_field"
-                  v-model="login_login"
-                  :rules="login_rules"
+                  @keydown="loginErrorText = 'Wpisz login'"
+                  class="loginField"
+                  v-model="loginUsername"
+                  :rules="loginRules"
                 >
                   <v-icon slot="prepend">mdi-account</v-icon>
                 </v-text-field>
                 <v-text-field
                   label="Hasło"
                   @keyup.enter="login"
-                  @keydown="passwd_err_txt = 'Wpisz hasło'"
+                  @keydown="passwdErrorText = 'Wpisz hasło'"
                   type="password"
-                  class="login_passwd_field"
-                  v-model="login_passwd"
-                  :rules="login_passwd_rules"
+                  class="loginPasswdField"
+                  v-model="loginPasswd"
+                  :rules="loginPasswdRules"
                 >
                   <v-icon slot="prepend">mdi-lock</v-icon>
                 </v-text-field>
-                <v-btn @click="login" color="green" dark>ZALOGUJ SIĘ</v-btn>
+                <v-btn
+                  :loading="loginBtnLoading"
+                  id="loginBtn"
+                  @click="login"
+                  color="green"
+                  dark
+                >ZALOGUJ SIĘ</v-btn>
               </v-card>
             </v-form>
           </v-tab-item>
           <v-tab-item>
-            <v-form
-              ref="signup_form"
-              class="signup_form"
-              v-model="signup_valid"
-            >
-              <v-card outlined class="signup_card">
-                <v-icon class="decorative_signup_icon" x-large
-                  >mdi-account-circle</v-icon
-                >
+            <v-form ref="signupForm" class="signupForm" v-model="signupValid">
+              <v-card outlined class="signupCard">
+                <v-icon class="decorativeSignupIcon" x-large>mdi-account-circle</v-icon>
                 <v-text-field
                   label="Login"
-                  class="signup_field"
-                  v-model="signup_login"
-                  :rules="login_rules"
+                  class="signupField"
+                  v-model="signupLogin"
+                  :rules="loginRules"
                 >
                   <v-icon slot="prepend">mdi-account</v-icon>
                 </v-text-field>
                 <v-text-field
                   label="Hasło"
                   type="password"
-                  class="signup_passwd_field"
-                  v-model="signup_passwd"
-                  :rules="signup_passwd_rules"
+                  class="signupPasswdField"
+                  v-model="signupPasswd"
+                  :rules="signupPasswdRules"
                 >
                   <v-icon slot="prepend">mdi-lock</v-icon>
                 </v-text-field>
@@ -99,13 +90,19 @@
                   label="Powtórz hasło"
                   @keyup.enter="signup"
                   type="password"
-                  class="signup_passwd2_field"
-                  v-model="signup_passwd2"
-                  :rules="signup_passwd2_rules"
+                  class="signupConfirmPasswdField"
+                  v-model="signupConfirmPasswd"
+                  :rules="signupConfirmPasswdRules"
                 >
                   <v-icon slot="prepend">mdi-lock-check</v-icon>
                 </v-text-field>
-                <v-btn @click="signup" color="blue" dark>UTWÓRZ KONTO</v-btn>
+                <v-btn
+                  :loading="signupBtnLoading"
+                  id="signupBtn"
+                  @click="signup"
+                  color="blue"
+                  dark
+                >UTWÓRZ KONTO</v-btn>
               </v-card>
             </v-form>
           </v-tab-item>
@@ -114,19 +111,16 @@
     </v-dialog>
     <div class="account" v-else>
       <strong class="d-flex flex-column">***REMOVED******REMOVED*** rank ***REMOVED******REMOVED***</strong>
-      <v-chip
-        ><p>***REMOVED******REMOVED*** $store.state.user ***REMOVED******REMOVED***</p></v-chip
-      >
-      <v-btn class="signout_btn d-flex flex-column" @click="signout"
-        >WYLOGUJ</v-btn
-      >
+      <v-chip>
+        <p>***REMOVED******REMOVED*** $store.state.user ***REMOVED******REMOVED***</p>
+      </v-chip>
+      <v-btn class="signupBtn d-flex flex-column" @click="signout">WYLOGUJ</v-btn>
     </div>
     <v-btn
-      v-if="$store.state.user_rank == 'admin'"
-      class="admin_btn"
+      v-if="$store.state.userRank == 'admin'"
+      class="adminBtn"
       @click="$router.push('/admin')"
-      >ADMIN PANEL</v-btn
-    >
+    >ADMIN PANEL</v-btn>
   </div>
 </template>
 
@@ -139,87 +133,94 @@ export default ***REMOVED***
   name: "Login",
   data() ***REMOVED***
     return ***REMOVED***
-      snack_text: "HELEOF",
+      loginBtnLoading: false,
+      signupBtnLoading: false,
       tab: 0,
-      login_dialog: false,
-      login_valid: false,
-      login_login: "",
-      passwd_err_txt: "Wpisz hasło",
-      login_err_txt: "Wpisz login",
-      login_passwd: "",
-      login_rules: [
-        (v) => !!v || this.login_err_txt,
+      loginDialog: false,
+      loginValid: false,
+      loginUsername: "",
+      passwdErrorText: "Wpisz hasło",
+      loginErrorText: "Wpisz login",
+      loginPasswd: "",
+      loginRules: [
+        (v) => !!v || this.loginErrorText,
         (v) => !v.includes(" ") || "Login nie może zawierać spacji",
         (v) => !v.includes("@") || "Login nie może zawierać @",
       ],
-      login_passwd_rules: [(v) => !!v || this.passwd_err_txt],
-      signup_passwd_rules: [
+      loginPasswdRules: [(v) => !!v || this.passwdErrorText],
+      signupPasswdRules: [
         (v) => !!v || "Wpisz hasło",
         (v) => v.length >= 6 || "Hasło musi mieć co najmniej 6 znaków",
       ],
-      signup_valid: false,
-      signup_login: "",
-      signup_passwd: "",
-      signup_passwd2: "",
-      signup_passwd2_rules: [
+      signupValid: false,
+      signupLogin: "",
+      signupPasswd: "",
+      signupConfirmPasswd: "",
+      signupConfirmPasswdRules: [
         (v) => !!v || "Wpisz hasło",
-        (v) => v == this.signup_passwd || "Hasła się nie zgadzają",
+        (v) => v == this.signupPasswd || "Hasła się nie zgadzają",
       ],
     ***REMOVED***;
   ***REMOVED***,
 
   methods: ***REMOVED***
     login() ***REMOVED***
-      let alt_this = this;
-      if (this.$refs.login_form.validate()) ***REMOVED***
+      let altThis = this;
+      if (this.$refs.loginForm.validate()) ***REMOVED***
+        this.loginBtnLoading = true;
         firebase
           .auth()
           .signInWithEmailAndPassword(
-            this.login_login + "@ii-p.com",
-            this.login_passwd
+            this.loginUsername + "@ii-p.com",
+            this.loginPasswd
           )
-          .catch(function(error) ***REMOVED***
+          .catch(function (error) ***REMOVED***
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
             if (errorCode == "auth/wrong-password") ***REMOVED***
-              alt_this.login_passwd = "";
-              alt_this.passwd_err_txt = "Niepoprawne hasło";
+              altThis.loginPasswd = "";
+              altThis.passwdErrorText = "Niepoprawne hasło";
             ***REMOVED*** else if (errorCode == "auth/too-many-requests") ***REMOVED***
-              alt_this.login_passwd = "";
-              alt_this.passwd_err_txt =
+              altThis.loginPasswd = "";
+              altThis.passwdErrorText =
                 "Zbyt dużo niepomyślnych logowań, spróbuj ponownie za kilkanaście sekund";
             ***REMOVED*** else if (errorCode == "auth/user-not-found") ***REMOVED***
-              alt_this.login_login = "";
-              alt_this.login_err_txt = "Nie znaleziono takiego użytkownika";
+              altThis.loginUsername = "";
+              altThis.loginErrorText = "Nie znaleziono takiego użytkownika";
             ***REMOVED*** else ***REMOVED***
-              alt_this.passwd_err_txt = `Nieoczekiwany błąd: $***REMOVED***errorCode***REMOVED***. Zgłoś problem do programisty`;
+              altThis.passwdErrorText = `Nieoczekiwany błąd: $***REMOVED***errorCode***REMOVED***. Zgłoś problem do programisty`;
             ***REMOVED***
             console.error(errorCode, "\n", errorMessage);
+          ***REMOVED***)
+          .then(() => ***REMOVED***
+            this.loginBtnLoading = false;
           ***REMOVED***);
       ***REMOVED***
     ***REMOVED***,
     signup() ***REMOVED***
-      if (this.$refs.signup_form.validate()) ***REMOVED***
-        let alt_this = this;
+      let altThis = this;
+      if (this.$refs.signupForm.validate()) ***REMOVED***
+        this.signupBtnLoading = true;
         firebase
           .auth()
           .createUserWithEmailAndPassword(
-            this.signup_login + "@ii-p.com",
-            this.signup_passwd
+            this.signupLogin + "@ii-p.com",
+            this.signupPasswd
           )
-          .catch(function(error) ***REMOVED***
+          .catch(function (error) ***REMOVED***
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
             if (errorCode == "auth/email-already-in-use") ***REMOVED***
-              alt_this.signup_login = "";
-              alt_this.login_err_txt = "Podany login jest zajęty";
+              altThis.signupLogin = "";
+              altThis.loginErrorText = "Podany login jest zajęty";
             ***REMOVED***
             console.error(errorCode, "\n", errorMessage);
             return;
           ***REMOVED***)
           .then(() => ***REMOVED***
+            this.signupBtnLoading = false;
             firebase
               .database()
               .ref(
@@ -240,10 +241,10 @@ export default ***REMOVED***
     ***REMOVED***,
   ***REMOVED***,
   created() ***REMOVED***
-    let alt_this = this;
+    let altThis = this;
     firebase.auth().onAuthStateChanged((firebaseUser) => ***REMOVED***
       if (firebaseUser) ***REMOVED***
-        this.$store.commit("setState", ***REMOVED*** name: "logged_in", val: true ***REMOVED***);
+        this.$store.commit("setState", ***REMOVED*** name: "loggedIn", val: true ***REMOVED***);
         this.$store.commit("setState", ***REMOVED***
           name: "user",
           val: firebaseUser.email.substring(firebaseUser.email.length - 9, 0),
@@ -255,31 +256,31 @@ export default ***REMOVED***
               firebaseUser.email.substring(firebaseUser.email.length - 9, 0) +
               "/rank"
           )
-          .on("value", function(snapshot) ***REMOVED***
-            alt_this.$store.commit("setState", ***REMOVED***
-              name: "user_rank",
+          .on("value", function (snapshot) ***REMOVED***
+            altThis.$store.commit("setState", ***REMOVED***
+              name: "userRank",
               val: snapshot.val(),
             ***REMOVED***);
           ***REMOVED***);
       ***REMOVED*** else ***REMOVED***
-        this.$store.commit("setState", ***REMOVED*** name: "logged_in", val: false ***REMOVED***);
+        this.$store.commit("setState", ***REMOVED*** name: "loggedIn", val: false ***REMOVED***);
         this.$store.commit("setState", ***REMOVED*** name: "user", val: "" ***REMOVED***);
         this.$store.commit("setState", ***REMOVED***
-          name: "user_rank",
+          name: "userRank",
           val: "",
         ***REMOVED***);
       ***REMOVED***
-      this.login_login = "";
-      this.login_passwd = "";
-      this.signup_login = "";
-      this.signup_passwd = "";
-      this.signup_passwd2 = "";
-      this.login_dialog = false;
+      this.loginUsername = "";
+      this.loginPasswd = "";
+      this.signupLogin = "";
+      this.signupPasswd = "";
+      this.signupConfirmPasswd = "";
+      this.loginDialog = false;
     ***REMOVED***);
   ***REMOVED***,
   computed: ***REMOVED***
-    rank: function() ***REMOVED***
-      switch (this.$store.state.user_rank) ***REMOVED***
+    rank: function () ***REMOVED***
+      switch (this.$store.state.userRank) ***REMOVED***
         case "user":
           return "Użytkownik";
         case "admin":
@@ -303,10 +304,10 @@ export default ***REMOVED***
     font-size: 35px;
     padding-top: 15px;
   ***REMOVED***
-  .login_btn ***REMOVED***
+  .loginBtn ***REMOVED***
     margin-top: 10px;
   ***REMOVED***
-  .signup_btn ***REMOVED***
+  .signupBtn ***REMOVED***
     margin-top: 10px;
   ***REMOVED***
 ***REMOVED***
@@ -315,8 +316,8 @@ export default ***REMOVED***
   position: absolute;
 ***REMOVED***
 
-.login_form,
-.signup_form ***REMOVED***
+.loginForm,
+.signupForm ***REMOVED***
   position: relative;
   margin-top: calc(50vh - 200px);
   width: 300px;
@@ -332,8 +333,8 @@ export default ***REMOVED***
     transform: translateX(-50%);
     margin-top: 20px;
   ***REMOVED***
-  .decorative_login_icon,
-  .decorative_signup_icon ***REMOVED***
+  .decorativeLoginIcon,
+  .decorativeSignupIcon ***REMOVED***
     margin-left: -20px;
     margin-bottom: 40px;
     margin-top: -40px;
@@ -343,8 +344,8 @@ export default ***REMOVED***
     transform: scale(200%);
   ***REMOVED***
 ***REMOVED***
-.login_card,
-.signup_card ***REMOVED***
+.loginCard,
+.signupCard ***REMOVED***
   padding: 20px;
 ***REMOVED***
 .account ***REMOVED***
@@ -364,7 +365,7 @@ export default ***REMOVED***
   ***REMOVED***
 ***REMOVED***
 
-.admin_btn ***REMOVED***
+.adminBtn ***REMOVED***
   margin-top: 10px;
   left: 50%;
   right: 50%;

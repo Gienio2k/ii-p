@@ -1,5 +1,5 @@
 <template>
-  <div v-if="authenticated" class="admin_panel">
+  <div v-if="authenticated" class="adminPanel">
     <h2>Panel administracyjny</h2>
   </div>
 </template>
@@ -17,23 +17,23 @@ export default ***REMOVED***
     ***REMOVED***;
   ***REMOVED***,
   beforeCreate() ***REMOVED***
-    let alt_this = this;
-    firebase.auth().onAuthStateChanged(function(user) ***REMOVED***
+    let altThis = this;
+    firebase.auth().onAuthStateChanged(function (user) ***REMOVED***
       if (user) ***REMOVED***
         firebase
           .database()
           .ref(
             "/users/" + user.email.substring(user.email.length - 9, 0) + "/rank"
           )
-          .on("value", function(snapshot) ***REMOVED***
+          .on("value", function (snapshot) ***REMOVED***
             if (snapshot.val() == "admin") ***REMOVED***
-              alt_this.authenticated = true;
+              altThis.authenticated = true;
             ***REMOVED*** else ***REMOVED***
-              alt_this.$router.push("/");
+              altThis.$router.push("/");
             ***REMOVED***
           ***REMOVED***);
       ***REMOVED*** else ***REMOVED***
-        alt_this.$router.push("/");
+        altThis.$router.push("/");
       ***REMOVED***
     ***REMOVED***);
   ***REMOVED***,

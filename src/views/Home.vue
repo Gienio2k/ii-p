@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div id="home_wrapper">
+    <div id="homeWrapper">
       <div class="image"></div>
       <div id="info">
         <h1 class="header">Strona internetowa klasy IIP!</h1>
@@ -30,7 +30,7 @@ export default ***REMOVED***
 <style scoped lang="scss">
 @import "../assets/stroke.scss";
 
-#home_wrapper ***REMOVED***
+#homeWrapper ***REMOVED***
   margin-top: -25px;
   height: calc(100vh - 56px);
   text-align: center;

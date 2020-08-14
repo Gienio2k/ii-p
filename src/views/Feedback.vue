@@ -4,17 +4,11 @@
       <h2>Przekaż informację przewodniczącemu</h2>
       <br />
       <div class="ckeditor">
-        <ckeditor
-          :editor="editor"
-          v-model="editor_data"
-          :config="editor_config"
-        ></ckeditor>
+        <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
       </div>
       <v-dialog persistent v-model="dialog" width="500">
         <template v-slot:activator="***REMOVED*** on, attrs ***REMOVED***">
-          <v-btn class="submit" color="green" dark v-bind="attrs" v-on="on"
-            >wyślij</v-btn
-          >
+          <v-btn class="submit" color="green" dark v-bind="attrs" v-on="on">wyślij</v-btn>
         </template>
 
         <v-card>
@@ -24,24 +18,20 @@
 
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn
-              color="error"
-              style="float:left;"
-              text
-              @click="dialog = false"
-              >Anuluj</v-btn
-            >
+            <v-btn color="error" style="float:left;" text @click="dialog = false">Anuluj</v-btn>
             <v-btn @click="send()" color="green">Tak</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
     </div>
-    <v-snackbar color="success" v-model="snackbar" top right timeout="2000"
-      >Wysłano wiadomość!
-    </v-snackbar>
-    <v-snackbar color="error" v-model="snackbar_err" top right timeout="2000"
-      >Nie możesz wysłać pustej wiadomości!
-    </v-snackbar>
+    <v-snackbar color="success" v-model="snackbar" top right timeout="2000">Wysłano wiadomość!</v-snackbar>
+    <v-snackbar
+      color="error"
+      v-model="snackbarError"
+      top
+      right
+      timeout="2000"
+    >Nie możesz wysłać pustej wiadomości!</v-snackbar>
   </div>
 </template>
 
@@ -57,32 +47,29 @@ export default ***REMOVED***
   data() ***REMOVED***
     return ***REMOVED***
       snackbar: false,
-      snackbar_err: false,
+      snackbarError: false,
       dialog: false,
       editor: ClassicEditor,
-      editor_data: this.$store.state.feedback_data,
-      editor_config: ***REMOVED******REMOVED***,
+      editorData: this.$store.state.feedbackData,
+      editorConfig: ***REMOVED******REMOVED***,
     ***REMOVED***;
   ***REMOVED***,
   beforeDestroy() ***REMOVED***
-    this.$store.state.feedback_data = this.editor_data;
+    this.$store.state.feedbackData = this.editorData;
   ***REMOVED***,
   methods: ***REMOVED***
     send() ***REMOVED***
-      if (this.editor_data == "") ***REMOVED***
+      if (this.editorData == "") ***REMOVED***
         this.dialog = false;
-        this.snackbar_err = true;
+        this.snackbarError = true;
         return false;
       ***REMOVED***
       let key = Date.now();
       let data = ***REMOVED******REMOVED***;
-      data[key.toString()] = ***REMOVED*** content: this.editor_data, timestamp: key ***REMOVED***;
-      firebase
-        .database()
-        .ref("feedback")
-        .update(data);
+      data[key.toString()] = ***REMOVED*** content: this.editorData, timestamp: key ***REMOVED***;
+      firebase.database().ref("feedback").update(data);
       this.dialog = false;
-      this.editor_data = "";
+      this.editorData = "";
       this.snackbar = true;
     ***REMOVED***,
   ***REMOVED***,

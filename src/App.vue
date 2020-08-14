@@ -6,12 +6,8 @@
         <br />
         <div class="login d-flex flex-column">
           <v-avatar :color="avatar">
-            <v-icon v-if="!$store.state.logged_in" x-large
-              >mdi-account-circle</v-icon
-            >
-            <p style="color: white;" v-else>
-              ***REMOVED******REMOVED*** $store.state.user.substring(0, 1).toUpperCase() ***REMOVED******REMOVED***
-            </p>
+            <v-icon v-if="!$store.state.loggedIn" x-large>mdi-account-circle</v-icon>
+            <p style="color: white;" v-else>***REMOVED******REMOVED*** $store.state.user.substring(0, 1).toUpperCase() ***REMOVED******REMOVED***</p>
           </v-avatar>
           <Login />
         </div>
@@ -19,8 +15,8 @@
         <br />
         <router-link to="/">
           <v-list-item
-            @click="active_page = 'Home'"
-            :class="[active_page == 'Home' ? 'v-list-item--active' : '']"
+            @click="activePage = 'Home'"
+            :class="[activePage == 'Home' ? 'v-list-item--active' : '']"
             link
           >
             <v-list-item-action>
@@ -33,9 +29,9 @@
         </router-link>
         <router-link to="feedback">
           <v-list-item
-            @click="active_page = 'Feedback'"
-            :class="[active_page == 'Feedback' ? 'v-list-item--active' : '']"
-            id="item_feedback"
+            @click="activePage = 'Feedback'"
+            :class="[activePage == 'Feedback' ? 'v-list-item--active' : '']"
+            id="itemFeedback"
             link
           >
             <v-list-item-action>
@@ -46,30 +42,19 @@
             </v-list-item-content>
           </v-list-item>
         </router-link>
-        <v-list-item id="theme_change_btn">
+        <v-list-item id="themeChangeBtn">
           <v-list-item-action>
-            <div class="theme_change_contents d-flex flex-row">
+            <div class="themeChangeContents d-flex flex-row">
               <v-icon>mdi-brightness-4</v-icon>
-              <v-switch
-                inset
-                @click="theme_change"
-                icon
-                v-model="$vuetify.theme.dark"
-              ></v-switch>
+              <v-switch inset @click="themeChange" icon v-model="$vuetify.theme.dark"></v-switch>
             </div>
           </v-list-item-action>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
     <v-app-bar app clipped-left color="blue darken-4">
-      <v-app-bar-nav-icon
-        dark
-        large
-        @click.stop="drawer = !drawer"
-      ></v-app-bar-nav-icon>
-      <h1 :class="[$vuetify.theme.dark ? 'dark_logo' : 'light_logo', 'logo']">
-        IIP
-      </h1>
+      <v-app-bar-nav-icon dark large @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <h1 :class="[$vuetify.theme.dark ? 'darkLogo' : 'lightLogo', 'logo']">IIP</h1>
     </v-app-bar>
 
     <v-main>
@@ -89,13 +74,13 @@ export default ***REMOVED***
 
   data() ***REMOVED***
     return ***REMOVED***
-      active_page: this.$router.currentRoute.name,
+      activePage: this.$router.currentRoute.name,
       drawer: null,
     ***REMOVED***;
   ***REMOVED***,
 
   methods: ***REMOVED***
-    theme_change() ***REMOVED***
+    themeChange() ***REMOVED***
       if (localStorage.getItem("dark")) ***REMOVED***
         localStorage.setItem(
           "dark",
@@ -113,8 +98,8 @@ export default ***REMOVED***
     ***REMOVED***
   ***REMOVED***,
   computed: ***REMOVED***
-    avatar: function() ***REMOVED***
-      return this.$store.state.logged_in ? "blue darken-4" : "";
+    avatar: function () ***REMOVED***
+      return this.$store.state.loggedIn ? "blue darken-4" : "";
     ***REMOVED***,
   ***REMOVED***,
 ***REMOVED***;
@@ -141,17 +126,17 @@ export default ***REMOVED***
   user-select: none;
 ***REMOVED***
 
-.light_logo ***REMOVED***
+.lightLogo ***REMOVED***
   @include stroke(5px, #ffffff);
   color: #0d47a1;
 ***REMOVED***
 
-.dark_logo ***REMOVED***
+.darkLogo ***REMOVED***
   @include stroke(5px, #0d47a1);
   color: #ffffff;
 ***REMOVED***
 
-#theme_change_btn ***REMOVED***
+#themeChangeBtn ***REMOVED***
   position: absolute;
   width: 87px;
   padding: 0;
@@ -166,7 +151,7 @@ export default ***REMOVED***
     transform: translateX(-50%);
     top: 35px;
   ***REMOVED***
-  .theme_change_contents ***REMOVED***
+  .themeChangeContents ***REMOVED***
     position: absolute;
     .v-icon ***REMOVED***
       margin-right: 15px;

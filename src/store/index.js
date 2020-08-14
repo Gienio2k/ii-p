@@ -5,10 +5,10 @@ Vue.use(Vuex);
 
 export default new Vuex.Store(***REMOVED***
   state: ***REMOVED***
-    feedback_data: "",
-    logged_in: false,
+    feedbackData: "",
+    loggedIn: false,
     user: "",
-    user_rank: "",
+    userRank: "",
   ***REMOVED***,
   mutations: ***REMOVED***
     setState(state, payload) ***REMOVED***
