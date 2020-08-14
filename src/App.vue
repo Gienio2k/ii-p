@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-navigation-drawer v-model="drawer" app clipped>
-      <v-list dense>
+      <v-list shaped dense>
         <br />
         <br />
         <div class="login d-flex flex-column">
@@ -9,7 +9,7 @@
             <v-icon v-if="!$store.state.loggedIn" x-large>mdi-account-circle</v-icon>
             <p style="color: white;" v-else>***REMOVED******REMOVED*** $store.state.user.substring(0, 1).toUpperCase() ***REMOVED******REMOVED***</p>
           </v-avatar>
-          <Login />
+          <Login @set-admin-page="activePage = 'AdminPanel'" />
         </div>
         <v-divider></v-divider>
         <br />
@@ -161,5 +161,9 @@ export default ***REMOVED***
 
 a ***REMOVED***
   text-decoration: unset;
+***REMOVED***
+
+.v-list-item ***REMOVED***
+  margin-bottom: 10px;
 ***REMOVED***
 </style>

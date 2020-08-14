@@ -29,7 +29,6 @@
             <v-tab>UTWÓRZ KONTO</v-tab>
           </v-tabs>
         </v-toolbar>
-
         <v-tabs-items v-model="tab">
           <v-tab-item>
             <v-form ref="loginForm" class="loginForm" v-model="loginValid">
@@ -119,7 +118,7 @@
     <v-btn
       v-if="$store.state.userRank == 'admin'"
       class="adminBtn"
-      @click="$router.push('/admin')"
+      @click="() => ***REMOVED***$router.push('/admin'); $emit('set-admin-page')***REMOVED***"
     >ADMIN PANEL</v-btn>
   </div>
 </template>
