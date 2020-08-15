@@ -1,19 +1,23 @@
 <template>
   <v-card elevation="5" outlined class="item">
     <div class="itemHeader d-flex flex-row">
-      <strong>***REMOVED******REMOVED***timestampDate***REMOVED******REMOVED***</strong>
+      <strong>***REMOVED******REMOVED*** timestampDate ***REMOVED******REMOVED***</strong>
       <v-spacer></v-spacer>
       <v-btn @click="open" icon>
         <v-icon x-large>mdi-fullscreen</v-icon>
       </v-btn>
     </div>
     <v-divider></v-divider>
-    <div class="content" :class="'content' + timestamp.toString()"></div>
+    <div
+      class="content ql-editor"
+      :class="'content' + timestamp.toString()"
+    ></div>
   </v-card>
 </template>
 
 <script>
 import $ from "jquery";
+import dateParse from "../../../utils/dateParse";
 
 export default ***REMOVED***
   name: "FeedbackItem",
@@ -22,7 +26,7 @@ export default ***REMOVED***
     return ***REMOVED******REMOVED***;
   ***REMOVED***,
   mounted() ***REMOVED***
-    $(".content" + this.timestamp.toString()).append(this.content);
+    $(".content" + this.timestamp.toString()).html(this.content);
   ***REMOVED***,
   computed: ***REMOVED***
     timestampDate() ***REMOVED***
@@ -30,11 +34,11 @@ export default ***REMOVED***
       return (
         date.toLocaleDateString("pl-pl") +
         " " +
-        date.getHours() +
+        dateParse(date.getHours()) +
         ":" +
-        date.getMinutes() +
+        dateParse(date.getMinutes()) +
         ":" +
-        date.getSeconds()
+        dateParse(date.getSeconds())
       );
     ***REMOVED***,
   ***REMOVED***,
@@ -52,6 +56,8 @@ export default ***REMOVED***
 </script>
 
 <style lang="scss">
+@import url(https://cdn.bootcss.com/quill/1.3.6/quill.snow.min.css);
+
 .item ***REMOVED***
   padding: 10px;
   margin-right: 10px;
@@ -59,7 +65,7 @@ export default ***REMOVED***
   max-width: 300px;
   min-height: 300px;
   max-height: 300px;
-  overflow-y: scroll;
+  overflow-y: hidden;
   .v-divider ***REMOVED***
     margin-bottom: 10px;
   ***REMOVED***

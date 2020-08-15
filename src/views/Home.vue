@@ -51,9 +51,7 @@ export default ***REMOVED***
     padding-top: 100px;
     background-color: transparent;
     .header ***REMOVED***
-      width: 100%;
-      top: 50%;
-      bottom: 50%;
+      width: inherit;
       font-size: 50px;
       line-height: 120%;
       color: white;

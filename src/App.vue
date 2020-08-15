@@ -27,6 +27,20 @@
             </v-list-item-content>
           </v-list-item>
         </router-link>
+        <router-link to="/blog">
+          <v-list-item
+            @click="activePage = 'Blog'"
+            :class="[activePage == 'Blog' ? 'v-list-item--active' : '']"
+            link
+          >
+            <v-list-item-action>
+              <v-icon>mdi-home</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>Aktualności</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </router-link>
         <router-link to="feedback">
           <v-list-item
             @click="activePage = 'Feedback'"

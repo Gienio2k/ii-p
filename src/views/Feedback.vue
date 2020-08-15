@@ -3,9 +3,7 @@
     <div class="editor">
       <h2>Przekaż informację przewodniczącemu</h2>
       <br />
-      <div id="tiptap">
-        <textarea v-model="editorData" cols="30" rows="10"></textarea>
-      </div>
+      <div id="tiptap"><vue-editor v-model="editorData"></vue-editor></div>
       <v-dialog persistent v-model="dialog" width="500">
         <template v-slot:activator="***REMOVED*** on, attrs ***REMOVED***">
           <v-btn class="submit" color="green" dark v-bind="attrs" v-on="on"
@@ -43,11 +41,12 @@
 
 <script>
 import * as firebase from "firebase/app";
-import "firebase/database";
+import "firebase/firestore";
+import ***REMOVED*** VueEditor ***REMOVED*** from "vue2-editor";
 
 export default ***REMOVED***
   name: "Feedback",
-  components: ***REMOVED******REMOVED***,
+  components: ***REMOVED*** VueEditor ***REMOVED***,
 
   data() ***REMOVED***
     return ***REMOVED***
@@ -67,16 +66,18 @@ export default ***REMOVED***
         this.snackbarError = true;
         return false;
       ***REMOVED***
-      let key = Date.now();
-      let data = ***REMOVED******REMOVED***;
-      data[key.toString()] = ***REMOVED*** content: this.editorData, timestamp: key ***REMOVED***;
+      let data = ***REMOVED***
+        content: this.editorData,
+        timestamp: firebase.firestore.Timestamp.now(),
+      ***REMOVED***;
       firebase
-        .database()
-        .ref("feedback")
-        .update(data);
-      this.dialog = false;
+        .firestore()
+        .collection("feedback")
+        .doc()
+        .set(data);
       this.editorData = "";
       this.snackbar = true;
+      this.dialog = false;
     ***REMOVED***,
   ***REMOVED***,
   mounted() ***REMOVED******REMOVED***,
@@ -84,6 +85,8 @@ export default ***REMOVED***
 </script>
 
 <style lang="scss">
+@import url(../assets/ql.css);
+
 .editor ***REMOVED***
   margin: 25px;
 ***REMOVED***

@@ -1,0 +1,960 @@
+/*!
+ * Quill Editor v1.3.6
+ * https://quilljs.com/
+ * Copyright (c) 2014, Jason Chen
+ * Copyright (c) 2013, salesforce.com
+ */
+.ql-container ***REMOVED***
+  box-sizing: border-box !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-size: 13px !important;
+  height: 100% !important;
+  margin: 0 !important;
+  position: relative !important;
+***REMOVED***
+.ql-container.ql-disabled .ql-tooltip ***REMOVED***
+  visibility: hidden !important;
+***REMOVED***
+.ql-container.ql-disabled .ql-editor ul[data-checked] > li::before ***REMOVED***
+  pointer-events: none !important;
+***REMOVED***
+.ql-clipboard ***REMOVED***
+  left: -100000px !important;
+  height: 1px !important;
+  overflow-y: hidden !important;
+  position: absolute !important;
+  top: 50% !important;
+***REMOVED***
+.ql-clipboard p ***REMOVED***
+  margin: 0 !important;
+  padding: 0 !important;
+***REMOVED***
+.ql-editor ***REMOVED***
+  box-sizing: border-box !important;
+  line-height: 1.42 !important;
+  height: 100% !important;
+  outline: 0 !important;
+  overflow-y: auto !important;
+  padding: 12px 15px !important;
+  tab-size: 4 !important;
+  -moz-tab-size: 4 !important;
+  text-align: left !important;
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+***REMOVED***
+.ql-editor > * ***REMOVED***
+  cursor: text !important;
+***REMOVED***
+.ql-editor blockquote,
+.ql-editor h1,
+.ql-editor h2,
+.ql-editor h3,
+.ql-editor h4,
+.ql-editor h5,
+.ql-editor h6,
+.ql-editor ol,
+.ql-editor p,
+.ql-editor pre,
+.ql-editor ul ***REMOVED***
+  margin: 0 !important;
+  padding: 0 !important;
+  counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9 !important;
+***REMOVED***
+.ql-editor ol,
+.ql-editor ul ***REMOVED***
+  padding-left: 1.5em !important;
+***REMOVED***
+.ql-editor ol > li,
+.ql-editor ul > li ***REMOVED***
+  list-style-type: none !important;
+***REMOVED***
+.ql-editor ul > li::before ***REMOVED***
+  content: "\2022" !important;
+***REMOVED***
+.ql-editor ul[data-checked="false"],
+.ql-editor ul[data-checked="true"] ***REMOVED***
+  pointer-events: none !important;
+***REMOVED***
+.ql-editor ul[data-checked="false"] > li *,
+.ql-editor ul[data-checked="true"] > li * ***REMOVED***
+  pointer-events: all !important;
+***REMOVED***
+.ql-editor ul[data-checked="false"] > li::before,
+.ql-editor ul[data-checked="true"] > li::before ***REMOVED***
+  color: #777 !important;
+  cursor: pointer !important;
+  pointer-events: all !important;
+***REMOVED***
+.ql-editor ul[data-checked="true"] > li::before ***REMOVED***
+  content: "\2611" !important;
+***REMOVED***
+.ql-editor ul[data-checked="false"] > li::before ***REMOVED***
+  content: "\2610" !important;
+***REMOVED***
+.ql-editor li::before ***REMOVED***
+  display: inline-block !important;
+  white-space: nowrap !important;
+  width: 1.2em !important;
+***REMOVED***
+.ql-editor li:not(.ql-direction-rtl)::before ***REMOVED***
+  margin-left: -1.5em !important;
+  margin-right: 0.3em !important;
+  text-align: right !important;
+***REMOVED***
+.ql-editor li.ql-direction-rtl::before ***REMOVED***
+  margin-left: 0.3em !important;
+  margin-right: -1.5em !important;
+***REMOVED***
+.ql-editor ol li:not(.ql-direction-rtl),
+.ql-editor ul li:not(.ql-direction-rtl) ***REMOVED***
+  padding-left: 1.5em !important;
+***REMOVED***
+.ql-editor ol li.ql-direction-rtl,
+.ql-editor ul li.ql-direction-rtl ***REMOVED***
+  padding-right: 1.5em !important;
+***REMOVED***
+.ql-editor ol li ***REMOVED***
+  counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9 !important;
+  counter-increment: list-0 !important;
+***REMOVED***
+.ql-editor ol li:before ***REMOVED***
+  content: counter(list-0, decimal) ". " !important;
+***REMOVED***
+.ql-editor ol li.ql-indent-1 ***REMOVED***
+  counter-increment: list-1 !important;
+***REMOVED***
+.ql-editor ol li.ql-indent-1:before ***REMOVED***
+  content: counter(list-1, lower-alpha) ". " !important;
+***REMOVED***
+.ql-editor ol li.ql-indent-1 ***REMOVED***
+  counter-reset: list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9 !important;
+***REMOVED***
+.ql-editor ol li.ql-indent-2 ***REMOVED***
+  counter-increment: list-2 !important;
+***REMOVED***
+.ql-editor ol li.ql-indent-2:before ***REMOVED***
+  content: counter(list-2, lower-roman) ". " !important;
+***REMOVED***
+.ql-editor ol li.ql-indent-2 ***REMOVED***
+  counter-reset: list-3 list-4 list-5 list-6 list-7 list-8 list-9 !important;
+***REMOVED***
+.ql-editor ol li.ql-indent-3 ***REMOVED***
+  counter-increment: list-3 !important;
+***REMOVED***
+.ql-editor ol li.ql-indent-3:before ***REMOVED***
+  content: counter(list-3, decimal) ". " !important;
+***REMOVED***
+.ql-editor ol li.ql-indent-3 ***REMOVED***
+  counter-reset: list-4 list-5 list-6 list-7 list-8 list-9 !important;
+***REMOVED***
+.ql-editor ol li.ql-indent-4 ***REMOVED***
+  counter-increment: list-4 !important;
+***REMOVED***
+.ql-editor ol li.ql-indent-4:before ***REMOVED***
+  content: counter(list-4, lower-alpha) ". " !important;
+***REMOVED***
+.ql-editor ol li.ql-indent-4 ***REMOVED***
+  counter-reset: list-5 list-6 list-7 list-8 list-9 !important;
+***REMOVED***
+.ql-editor ol li.ql-indent-5 ***REMOVED***
+  counter-increment: list-5 !important;
+***REMOVED***
+.ql-editor ol li.ql-indent-5:before ***REMOVED***
+  content: counter(list-5, lower-roman) ". " !important;
+***REMOVED***
+.ql-editor ol li.ql-indent-5 ***REMOVED***
+  counter-reset: list-6 list-7 list-8 list-9 !important;
+***REMOVED***
+.ql-editor ol li.ql-indent-6 ***REMOVED***
+  counter-increment: list-6 !important;
+***REMOVED***
+.ql-editor ol li.ql-indent-6:before ***REMOVED***
+  content: counter(list-6, decimal) ". " !important;
+***REMOVED***
+.ql-editor ol li.ql-indent-6 ***REMOVED***
+  counter-reset: list-7 list-8 list-9 !important;
+***REMOVED***
+.ql-editor ol li.ql-indent-7 ***REMOVED***
+  counter-increment: list-7 !important;
+***REMOVED***
+.ql-editor ol li.ql-indent-7:before ***REMOVED***
+  content: counter(list-7, lower-alpha) ". " !important;
+***REMOVED***
+.ql-editor ol li.ql-indent-7 ***REMOVED***
+  counter-reset: list-8 list-9 !important;
+***REMOVED***
+.ql-editor ol li.ql-indent-8 ***REMOVED***
+  counter-increment: list-8 !important;
+***REMOVED***
+.ql-editor ol li.ql-indent-8:before ***REMOVED***
+  content: counter(list-8, lower-roman) ". " !important;
+***REMOVED***
+.ql-editor ol li.ql-indent-8 ***REMOVED***
+  counter-reset: list-9 !important;
+***REMOVED***
+.ql-editor ol li.ql-indent-9 ***REMOVED***
+  counter-increment: list-9 !important;
+***REMOVED***
+.ql-editor ol li.ql-indent-9:before ***REMOVED***
+  content: counter(list-9, decimal) ". " !important;
+***REMOVED***
+.ql-editor .ql-indent-1:not(.ql-direction-rtl) ***REMOVED***
+  padding-left: 3em !important;
+***REMOVED***
+.ql-editor li.ql-indent-1:not(.ql-direction-rtl) ***REMOVED***
+  padding-left: 4.5em !important;
+***REMOVED***
+.ql-editor .ql-indent-1.ql-direction-rtl.ql-align-right ***REMOVED***
+  padding-right: 3em !important;
+***REMOVED***
+.ql-editor li.ql-indent-1.ql-direction-rtl.ql-align-right ***REMOVED***
+  padding-right: 4.5em !important;
+***REMOVED***
+.ql-editor .ql-indent-2:not(.ql-direction-rtl) ***REMOVED***
+  padding-left: 6em !important;
+***REMOVED***
+.ql-editor li.ql-indent-2:not(.ql-direction-rtl) ***REMOVED***
+  padding-left: 7.5em !important;
+***REMOVED***
+.ql-editor .ql-indent-2.ql-direction-rtl.ql-align-right ***REMOVED***
+  padding-right: 6em !important;
+***REMOVED***
+.ql-editor li.ql-indent-2.ql-direction-rtl.ql-align-right ***REMOVED***
+  padding-right: 7.5em !important;
+***REMOVED***
+.ql-editor .ql-indent-3:not(.ql-direction-rtl) ***REMOVED***
+  padding-left: 9em !important;
+***REMOVED***
+.ql-editor li.ql-indent-3:not(.ql-direction-rtl) ***REMOVED***
+  padding-left: 10.5em !important;
+***REMOVED***
+.ql-editor .ql-indent-3.ql-direction-rtl.ql-align-right ***REMOVED***
+  padding-right: 9em !important;
+***REMOVED***
+.ql-editor li.ql-indent-3.ql-direction-rtl.ql-align-right ***REMOVED***
+  padding-right: 10.5em !important;
+***REMOVED***
+.ql-editor .ql-indent-4:not(.ql-direction-rtl) ***REMOVED***
+  padding-left: 12em !important;
+***REMOVED***
+.ql-editor li.ql-indent-4:not(.ql-direction-rtl) ***REMOVED***
+  padding-left: 13.5em !important;
+***REMOVED***
+.ql-editor .ql-indent-4.ql-direction-rtl.ql-align-right ***REMOVED***
+  padding-right: 12em !important;
+***REMOVED***
+.ql-editor li.ql-indent-4.ql-direction-rtl.ql-align-right ***REMOVED***
+  padding-right: 13.5em !important;
+***REMOVED***
+.ql-editor .ql-indent-5:not(.ql-direction-rtl) ***REMOVED***
+  padding-left: 15em !important;
+***REMOVED***
+.ql-editor li.ql-indent-5:not(.ql-direction-rtl) ***REMOVED***
+  padding-left: 16.5em !important;
+***REMOVED***
+.ql-editor .ql-indent-5.ql-direction-rtl.ql-align-right ***REMOVED***
+  padding-right: 15em !important;
+***REMOVED***
+.ql-editor li.ql-indent-5.ql-direction-rtl.ql-align-right ***REMOVED***
+  padding-right: 16.5em !important;
+***REMOVED***
+.ql-editor .ql-indent-6:not(.ql-direction-rtl) ***REMOVED***
+  padding-left: 18em !important;
+***REMOVED***
+.ql-editor li.ql-indent-6:not(.ql-direction-rtl) ***REMOVED***
+  padding-left: 19.5em !important;
+***REMOVED***
+.ql-editor .ql-indent-6.ql-direction-rtl.ql-align-right ***REMOVED***
+  padding-right: 18em !important;
+***REMOVED***
+.ql-editor li.ql-indent-6.ql-direction-rtl.ql-align-right ***REMOVED***
+  padding-right: 19.5em !important;
+***REMOVED***
+.ql-editor .ql-indent-7:not(.ql-direction-rtl) ***REMOVED***
+  padding-left: 21em !important;
+***REMOVED***
+.ql-editor li.ql-indent-7:not(.ql-direction-rtl) ***REMOVED***
+  padding-left: 22.5em !important;
+***REMOVED***
+.ql-editor .ql-indent-7.ql-direction-rtl.ql-align-right ***REMOVED***
+  padding-right: 21em !important;
+***REMOVED***
+.ql-editor li.ql-indent-7.ql-direction-rtl.ql-align-right ***REMOVED***
+  padding-right: 22.5em !important;
+***REMOVED***
+.ql-editor .ql-indent-8:not(.ql-direction-rtl) ***REMOVED***
+  padding-left: 24em !important;
+***REMOVED***
+.ql-editor li.ql-indent-8:not(.ql-direction-rtl) ***REMOVED***
+  padding-left: 25.5em !important;
+***REMOVED***
+.ql-editor .ql-indent-8.ql-direction-rtl.ql-align-right ***REMOVED***
+  padding-right: 24em !important;
+***REMOVED***
+.ql-editor li.ql-indent-8.ql-direction-rtl.ql-align-right ***REMOVED***
+  padding-right: 25.5em !important;
+***REMOVED***
+.ql-editor .ql-indent-9:not(.ql-direction-rtl) ***REMOVED***
+  padding-left: 27em !important;
+***REMOVED***
+.ql-editor li.ql-indent-9:not(.ql-direction-rtl) ***REMOVED***
+  padding-left: 28.5em !important;
+***REMOVED***
+.ql-editor .ql-indent-9.ql-direction-rtl.ql-align-right ***REMOVED***
+  padding-right: 27em !important;
+***REMOVED***
+.ql-editor li.ql-indent-9.ql-direction-rtl.ql-align-right ***REMOVED***
+  padding-right: 28.5em !important;
+***REMOVED***
+.ql-editor .ql-video ***REMOVED***
+  display: block !important;
+  max-width: 100% !important;
+***REMOVED***
+.ql-editor .ql-video.ql-align-center ***REMOVED***
+  margin: 0 auto !important;
+***REMOVED***
+.ql-editor .ql-video.ql-align-right ***REMOVED***
+  margin: 0 0 0 auto !important;
+***REMOVED***
+.ql-editor .ql-bg-black ***REMOVED***
+  background-color: #000 !important;
+***REMOVED***
+.ql-editor .ql-bg-red ***REMOVED***
+  background-color: #e60000 !important;
+***REMOVED***
+.ql-editor .ql-bg-orange ***REMOVED***
+  background-color: #f90 !important;
+***REMOVED***
+.ql-editor .ql-bg-yellow ***REMOVED***
+  background-color: #ff0 !important;
+***REMOVED***
+.ql-editor .ql-bg-green ***REMOVED***
+  background-color: #008a00 !important;
+***REMOVED***
+.ql-editor .ql-bg-#36C3F2 ***REMOVED***
+  background-color: #36c3f2 !important;
+***REMOVED***
+.ql-editor .ql-bg-purple ***REMOVED***
+  background-color: #93f !important;
+***REMOVED***
+.ql-editor .ql-color-white ***REMOVED***
+  color: #fff !important;
+***REMOVED***
+.ql-editor .ql-color-red ***REMOVED***
+  color: #e60000 !important;
+***REMOVED***
+.ql-editor .ql-color-orange ***REMOVED***
+  color: #f90 !important;
+***REMOVED***
+.ql-editor .ql-color-yellow ***REMOVED***
+  color: #ff0 !important;
+***REMOVED***
+.ql-editor .ql-color-green ***REMOVED***
+  color: #008a00 !important;
+***REMOVED***
+.ql-editor .ql-color-#36C3F2 ***REMOVED***
+  color: #36c3f2 !important;
+***REMOVED***
+.ql-editor .ql-color-purple ***REMOVED***
+  color: #93f !important;
+***REMOVED***
+.ql-editor .ql-font-serif ***REMOVED***
+  font-family: Georgia, Times New Roman, serif !important;
+***REMOVED***
+.ql-editor .ql-font-monospace ***REMOVED***
+  font-family: Monaco, Courier New, monospace !important;
+***REMOVED***
+.ql-editor .ql-size-small ***REMOVED***
+  font-size: 0.75em !important;
+***REMOVED***
+.ql-editor .ql-size-large ***REMOVED***
+  font-size: 1.5em !important;
+***REMOVED***
+.ql-editor .ql-size-huge ***REMOVED***
+  font-size: 2.5em !important;
+***REMOVED***
+.ql-editor .ql-direction-rtl ***REMOVED***
+  direction: rtl !important;
+  text-align: inherit !important;
+***REMOVED***
+.ql-editor .ql-align-center ***REMOVED***
+  text-align: center !important;
+***REMOVED***
+.ql-editor .ql-align-justify ***REMOVED***
+  text-align: justify !important;
+***REMOVED***
+.ql-editor .ql-align-right ***REMOVED***
+  text-align: right !important;
+***REMOVED***
+.ql-editor.ql-blank::before ***REMOVED***
+  color: rgba(0, 0, 0, 0.6) !important;
+  content: attr(data-placeholder) !important;
+  font-style: italic !important;
+  left: 15px !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  right: 15px !important;
+***REMOVED***
+.ql-snow .ql-toolbar:after,
+.ql-snow.ql-toolbar:after ***REMOVED***
+  clear: both !important;
+  content: "" !important;
+  display: table !important;
+***REMOVED***
+.ql-snow .ql-toolbar button,
+.ql-snow.ql-toolbar button ***REMOVED***
+  background: 0 0 !important;
+  border: none !important;
+  cursor: pointer !important;
+  display: inline-block !important;
+  float: left !important;
+  height: 24px !important;
+  padding: 3px 5px !important;
+  width: 28px !important;
+***REMOVED***
+.ql-snow .ql-toolbar button svg,
+.ql-snow.ql-toolbar button svg ***REMOVED***
+  float: left !important;
+  height: 100% !important;
+***REMOVED***
+.ql-snow .ql-toolbar button:active:hover,
+.ql-snow.ql-toolbar button:active:hover ***REMOVED***
+  outline: 0 !important;
+***REMOVED***
+.ql-snow .ql-toolbar input.ql-image[type="file"],
+.ql-snow.ql-toolbar input.ql-image[type="file"] ***REMOVED***
+  display: none !important;
+***REMOVED***
+.ql-snow .ql-toolbar .ql-picker-item.ql-selected,
+.ql-snow .ql-toolbar .ql-picker-item:hover,
+.ql-snow .ql-toolbar .ql-picker-label.ql-active,
+.ql-snow .ql-toolbar .ql-picker-label:hover,
+.ql-snow .ql-toolbar button.ql-active,
+.ql-snow .ql-toolbar button:focus,
+.ql-snow .ql-toolbar button:hover,
+.ql-snow.ql-toolbar .ql-picker-item.ql-selected,
+.ql-snow.ql-toolbar .ql-picker-item:hover,
+.ql-snow.ql-toolbar .ql-picker-label.ql-active,
+.ql-snow.ql-toolbar .ql-picker-label:hover,
+.ql-snow.ql-toolbar button.ql-active,
+.ql-snow.ql-toolbar button:focus,
+.ql-snow.ql-toolbar button:hover ***REMOVED***
+  color: #36c3f2 !important;
+***REMOVED***
+.ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-fill,
+.ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke.ql-fill,
+.ql-snow .ql-toolbar .ql-picker-item:hover .ql-fill,
+.ql-snow .ql-toolbar .ql-picker-item:hover .ql-stroke.ql-fill,
+.ql-snow .ql-toolbar .ql-picker-label.ql-active .ql-fill,
+.ql-snow .ql-toolbar .ql-picker-label.ql-active .ql-stroke.ql-fill,
+.ql-snow .ql-toolbar .ql-picker-label:hover .ql-fill,
+.ql-snow .ql-toolbar .ql-picker-label:hover .ql-stroke.ql-fill,
+.ql-snow .ql-toolbar button.ql-active .ql-fill,
+.ql-snow .ql-toolbar button.ql-active .ql-stroke.ql-fill,
+.ql-snow .ql-toolbar button:focus .ql-fill,
+.ql-snow .ql-toolbar button:focus .ql-stroke.ql-fill,
+.ql-snow .ql-toolbar button:hover .ql-fill,
+.ql-snow .ql-toolbar button:hover .ql-stroke.ql-fill,
+.ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-fill,
+.ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke.ql-fill,
+.ql-snow.ql-toolbar .ql-picker-item:hover .ql-fill,
+.ql-snow.ql-toolbar .ql-picker-item:hover .ql-stroke.ql-fill,
+.ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-fill,
+.ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-stroke.ql-fill,
+.ql-snow.ql-toolbar .ql-picker-label:hover .ql-fill,
+.ql-snow.ql-toolbar .ql-picker-label:hover .ql-stroke.ql-fill,
+.ql-snow.ql-toolbar button.ql-active .ql-fill,
+.ql-snow.ql-toolbar button.ql-active .ql-stroke.ql-fill,
+.ql-snow.ql-toolbar button:focus .ql-fill,
+.ql-snow.ql-toolbar button:focus .ql-stroke.ql-fill,
+.ql-snow.ql-toolbar button:hover .ql-fill,
+.ql-snow.ql-toolbar button:hover .ql-stroke.ql-fill ***REMOVED***
+  fill: #36c3f2 !important;
+***REMOVED***
+.ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke,
+.ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke-miter,
+.ql-snow .ql-toolbar .ql-picker-item:hover .ql-stroke,
+.ql-snow .ql-toolbar .ql-picker-item:hover .ql-stroke-miter,
+.ql-snow .ql-toolbar .ql-picker-label.ql-active .ql-stroke,
+.ql-snow .ql-toolbar .ql-picker-label.ql-active .ql-stroke-miter,
+.ql-snow .ql-toolbar .ql-picker-label:hover .ql-stroke,
+.ql-snow .ql-toolbar .ql-picker-label:hover .ql-stroke-miter,
+.ql-snow .ql-toolbar button.ql-active .ql-stroke,
+.ql-snow .ql-toolbar button.ql-active .ql-stroke-miter,
+.ql-snow .ql-toolbar button:focus .ql-stroke,
+.ql-snow .ql-toolbar button:focus .ql-stroke-miter,
+.ql-snow .ql-toolbar button:hover .ql-stroke,
+.ql-snow .ql-toolbar button:hover .ql-stroke-miter,
+.ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke,
+.ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke-miter,
+.ql-snow.ql-toolbar .ql-picker-item:hover .ql-stroke,
+.ql-snow.ql-toolbar .ql-picker-item:hover .ql-stroke-miter,
+.ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-stroke,
+.ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-stroke-miter,
+.ql-snow.ql-toolbar .ql-picker-label:hover .ql-stroke,
+.ql-snow.ql-toolbar .ql-picker-label:hover .ql-stroke-miter,
+.ql-snow.ql-toolbar button.ql-active .ql-stroke,
+.ql-snow.ql-toolbar button.ql-active .ql-stroke-miter,
+.ql-snow.ql-toolbar button:focus .ql-stroke,
+.ql-snow.ql-toolbar button:focus .ql-stroke-miter,
+.ql-snow.ql-toolbar button:hover .ql-stroke,
+.ql-snow.ql-toolbar button:hover .ql-stroke-miter ***REMOVED***
+  stroke: #36c3f2 !important;
+***REMOVED***
+@media (pointer: coarse) ***REMOVED***
+  .ql-snow .ql-toolbar button:hover:not(.ql-active),
+  .ql-snow.ql-toolbar button:hover:not(.ql-active) ***REMOVED***
+    color: #ffffff !important;
+  ***REMOVED***
+  .ql-snow .ql-toolbar button:hover:not(.ql-active) .ql-fill,
+  .ql-snow .ql-toolbar button:hover:not(.ql-active) .ql-stroke.ql-fill,
+  .ql-snow.ql-toolbar button:hover:not(.ql-active) .ql-fill,
+  .ql-snow.ql-toolbar button:hover:not(.ql-active) .ql-stroke.ql-fill ***REMOVED***
+    fill: #ffffff !important;
+  ***REMOVED***
+  .ql-snow .ql-toolbar button:hover:not(.ql-active) .ql-stroke,
+  .ql-snow .ql-toolbar button:hover:not(.ql-active) .ql-stroke-miter,
+  .ql-snow.ql-toolbar button:hover:not(.ql-active) .ql-stroke,
+  .ql-snow.ql-toolbar button:hover:not(.ql-active) .ql-stroke-miter ***REMOVED***
+    stroke: #ffffff !important;
+  ***REMOVED***
+***REMOVED***
+.ql-snow ***REMOVED***
+  box-sizing: border-box !important;
+***REMOVED***
+.ql-snow * ***REMOVED***
+  box-sizing: border-box !important;
+***REMOVED***
+.ql-snow .ql-hidden ***REMOVED***
+  display: none !important;
+***REMOVED***
+.ql-snow .ql-out-bottom,
+.ql-snow .ql-out-top ***REMOVED***
+  visibility: hidden !important;
+***REMOVED***
+.ql-snow .ql-tooltip ***REMOVED***
+  position: absolute !important;
+  transform: translateY(10px) !important;
+***REMOVED***
+.ql-snow .ql-tooltip a ***REMOVED***
+  cursor: pointer !important;
+  text-decoration: none !important;
+***REMOVED***
+.ql-snow .ql-tooltip.ql-flip ***REMOVED***
+  transform: translateY(-10px) !important;
+***REMOVED***
+.ql-snow .ql-formats ***REMOVED***
+  display: inline-block !important;
+  vertical-align: middle !important;
+***REMOVED***
+.ql-snow .ql-formats:after ***REMOVED***
+  clear: both !important;
+  content: "" !important;
+  display: table !important;
+***REMOVED***
+.ql-snow .ql-stroke ***REMOVED***
+  fill: none !important;
+  stroke: #ffffff !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  stroke-width: 2 !important;
+***REMOVED***
+.ql-snow .ql-stroke-miter ***REMOVED***
+  fill: none !important;
+  stroke: #ffffff !important;
+  stroke-miterlimit: 10 !important;
+  stroke-width: 2 !important;
+***REMOVED***
+.ql-snow .ql-fill,
+.ql-snow .ql-stroke.ql-fill ***REMOVED***
+  fill: #ffffff !important;
+***REMOVED***
+.ql-snow .ql-empty ***REMOVED***
+  fill: none !important;
+***REMOVED***
+.ql-snow .ql-even ***REMOVED***
+  fill-rule: evenodd !important;
+***REMOVED***
+.ql-snow .ql-stroke.ql-thin,
+.ql-snow .ql-thin ***REMOVED***
+  stroke-width: 1 !important;
+***REMOVED***
+.ql-snow .ql-transparent ***REMOVED***
+  opacity: 0.4 !important;
+***REMOVED***
+.ql-snow .ql-direction svg:last-child ***REMOVED***
+  display: none !important;
+***REMOVED***
+.ql-snow .ql-direction.ql-active svg:last-child ***REMOVED***
+  display: inline !important;
+***REMOVED***
+.ql-snow .ql-direction.ql-active svg:first-child ***REMOVED***
+  display: none !important;
+***REMOVED***
+.ql-snow .ql-editor h1 ***REMOVED***
+  font-size: 2em !important;
+***REMOVED***
+.ql-snow .ql-editor h2 ***REMOVED***
+  font-size: 1.5em !important;
+***REMOVED***
+.ql-snow .ql-editor h3 ***REMOVED***
+  font-size: 1.17em !important;
+***REMOVED***
+.ql-snow .ql-editor h4 ***REMOVED***
+  font-size: 1em !important;
+***REMOVED***
+.ql-snow .ql-editor h5 ***REMOVED***
+  font-size: 0.83em !important;
+***REMOVED***
+.ql-snow .ql-editor h6 ***REMOVED***
+  font-size: 0.67em !important;
+***REMOVED***
+.ql-snow .ql-editor a ***REMOVED***
+  text-decoration: underline !important;
+***REMOVED***
+.ql-snow .ql-editor blockquote ***REMOVED***
+  border-left: 4px solid rgb(97, 97, 97) !important;
+  margin-bottom: 5px !important;
+  margin-top: 5px !important;
+  padding-left: 16px !important;
+***REMOVED***
+.ql-snow .ql-editor code,
+.ql-snow .ql-editor pre ***REMOVED***
+  background-color: #ffffff !important;
+  border-radius: 3px !important;
+***REMOVED***
+.ql-snow .ql-editor pre ***REMOVED***
+  white-space: pre-wrap !important;
+  margin-bottom: 5px !important;
+  margin-top: 5px !important;
+  padding: 5px 10px !important;
+***REMOVED***
+.ql-snow .ql-editor code ***REMOVED***
+  font-size: 85% !important;
+  padding: 2px 4px !important;
+***REMOVED***
+.ql-snow .ql-editor pre.ql-syntax ***REMOVED***
+  background-color: #23241f !important;
+  color: #f8f8f2 !important;
+  overflow: visible !important;
+***REMOVED***
+.ql-snow .ql-editor img ***REMOVED***
+  max-width: 100% !important;
+***REMOVED***
+.ql-snow .ql-picker ***REMOVED***
+  color: #ffffff !important;
+  display: inline-block !important;
+  float: left !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  height: 24px !important;
+  position: relative !important;
+  vertical-align: middle !important;
+***REMOVED***
+.ql-snow .ql-picker-label ***REMOVED***
+  cursor: pointer !important;
+  display: inline-block !important;
+  height: 100% !important;
+  padding-left: 8px !important;
+  padding-right: 2px !important;
+  position: relative !important;
+  width: 100% !important;
+***REMOVED***
+.ql-snow .ql-picker-label::before ***REMOVED***
+  display: inline-block !important;
+  line-height: 22px !important;
+***REMOVED***
+.ql-snow .ql-picker-options ***REMOVED***
+  background-color: #fff !important;
+  display: none !important;
+  min-width: 100% !important;
+  padding: 4px 8px !important;
+  position: absolute !important;
+  white-space: nowrap !important;
+***REMOVED***
+.ql-snow .ql-picker-options .ql-picker-item ***REMOVED***
+  cursor: pointer !important;
+  display: block !important;
+  padding-bottom: 5px !important;
+  padding-top: 5px !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-expanded .ql-picker-label ***REMOVED***
+  color: rgb(97, 97, 97) !important;
+  z-index: 2 !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-expanded .ql-picker-label .ql-fill ***REMOVED***
+  fill: rgb(97, 97, 97) !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-expanded .ql-picker-label .ql-stroke ***REMOVED***
+  stroke: rgb(97, 97, 97) !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-expanded .ql-picker-options ***REMOVED***
+  display: block !important;
+  margin-top: -1px !important;
+  top: 100% !important;
+  z-index: 1 !important;
+***REMOVED***
+.ql-snow .ql-color-picker,
+.ql-snow .ql-icon-picker ***REMOVED***
+  width: 28px !important;
+***REMOVED***
+.ql-snow .ql-color-picker .ql-picker-label,
+.ql-snow .ql-icon-picker .ql-picker-label ***REMOVED***
+  padding: 2px 4px !important;
+***REMOVED***
+.ql-snow .ql-color-picker .ql-picker-label svg,
+.ql-snow .ql-icon-picker .ql-picker-label svg ***REMOVED***
+  right: 4px !important;
+***REMOVED***
+.ql-snow .ql-icon-picker .ql-picker-options ***REMOVED***
+  padding: 4px 0 !important;
+***REMOVED***
+.ql-snow .ql-icon-picker .ql-picker-item ***REMOVED***
+  height: 24px !important;
+  width: 24px !important;
+  padding: 2px 4px !important;
+***REMOVED***
+.ql-snow .ql-color-picker .ql-picker-options ***REMOVED***
+  padding: 3px 5px !important;
+  width: 152px !important;
+***REMOVED***
+.ql-snow .ql-color-picker .ql-picker-item ***REMOVED***
+  border: 1px solid transparent !important;
+  float: left !important;
+  height: 16px !important;
+  margin: 2px !important;
+  padding: 0 !important;
+  width: 16px !important;
+***REMOVED***
+.ql-snow .ql-picker:not(.ql-color-picker):not(.ql-icon-picker) svg ***REMOVED***
+  position: absolute !important;
+  margin-top: -9px !important;
+  right: 0 !important;
+  top: 50% !important;
+  width: 18px !important;
+***REMOVED***
+.ql-snow
+  .ql-picker.ql-font
+  .ql-picker-item[data-label]:not([data-label=""])::before,
+.ql-snow
+  .ql-picker.ql-font
+  .ql-picker-label[data-label]:not([data-label=""])::before,
+.ql-snow
+  .ql-picker.ql-header
+  .ql-picker-item[data-label]:not([data-label=""])::before,
+.ql-snow
+  .ql-picker.ql-header
+  .ql-picker-label[data-label]:not([data-label=""])::before,
+.ql-snow
+  .ql-picker.ql-size
+  .ql-picker-item[data-label]:not([data-label=""])::before,
+.ql-snow
+  .ql-picker.ql-size
+  .ql-picker-label[data-label]:not([data-label=""])::before ***REMOVED***
+  content: attr(data-label) !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-header ***REMOVED***
+  width: 98px !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-header .ql-picker-item::before,
+.ql-snow .ql-picker.ql-header .ql-picker-label::before ***REMOVED***
+  content: "Normal" !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value="1"]::before,
+.ql-snow .ql-picker.ql-header .ql-picker-label[data-value="1"]::before ***REMOVED***
+  content: "Heading 1" !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value="2"]::before,
+.ql-snow .ql-picker.ql-header .ql-picker-label[data-value="2"]::before ***REMOVED***
+  content: "Heading 2" !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value="3"]::before,
+.ql-snow .ql-picker.ql-header .ql-picker-label[data-value="3"]::before ***REMOVED***
+  content: "Heading 3" !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value="4"]::before,
+.ql-snow .ql-picker.ql-header .ql-picker-label[data-value="4"]::before ***REMOVED***
+  content: "Heading 4" !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value="5"]::before,
+.ql-snow .ql-picker.ql-header .ql-picker-label[data-value="5"]::before ***REMOVED***
+  content: "Heading 5" !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value="6"]::before,
+.ql-snow .ql-picker.ql-header .ql-picker-label[data-value="6"]::before ***REMOVED***
+  content: "Heading 6" !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value="1"]::before ***REMOVED***
+  font-size: 2em !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value="2"]::before ***REMOVED***
+  font-size: 1.5em !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value="3"]::before ***REMOVED***
+  font-size: 1.17em !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value="4"]::before ***REMOVED***
+  font-size: 1em !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value="5"]::before ***REMOVED***
+  font-size: 0.83em !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value="6"]::before ***REMOVED***
+  font-size: 0.67em !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-font ***REMOVED***
+  width: 108px !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-font .ql-picker-item::before,
+.ql-snow .ql-picker.ql-font .ql-picker-label::before ***REMOVED***
+  content: "Sans Serif" !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="serif"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="serif"]::before ***REMOVED***
+  content: "Serif" !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="monospace"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="monospace"]::before ***REMOVED***
+  content: "Monospace" !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="serif"]::before ***REMOVED***
+  font-family: Georgia, Times New Roman, serif !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="monospace"]::before ***REMOVED***
+  font-family: Monaco, Courier New, monospace !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-size ***REMOVED***
+  width: 98px !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-size .ql-picker-item::before,
+.ql-snow .ql-picker.ql-size .ql-picker-label::before ***REMOVED***
+  content: "Normal" !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="small"]::before,
+.ql-snow .ql-picker.ql-size .ql-picker-label[data-value="small"]::before ***REMOVED***
+  content: "Small" !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="large"]::before,
+.ql-snow .ql-picker.ql-size .ql-picker-label[data-value="large"]::before ***REMOVED***
+  content: "Large" !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="huge"]::before,
+.ql-snow .ql-picker.ql-size .ql-picker-label[data-value="huge"]::before ***REMOVED***
+  content: "Huge" !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="small"]::before ***REMOVED***
+  font-size: 10px !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="large"]::before ***REMOVED***
+  font-size: 18px !important;
+***REMOVED***
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="huge"]::before ***REMOVED***
+  font-size: 32px !important;
+***REMOVED***
+.ql-snow .ql-color-picker.ql-background .ql-picker-item ***REMOVED***
+  background-color: #fff !important;
+***REMOVED***
+.ql-snow .ql-color-picker.ql-color .ql-picker-item ***REMOVED***
+  background-color: #fff !important;
+***REMOVED***
+.ql-toolbar.ql-snow ***REMOVED***
+  border: 1px solid rgb(97, 97, 97) !important;
+  box-sizing: border-box !important;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  padding: 8px !important;
+  background-color: #363636;
+***REMOVED***
+.ql-toolbar.ql-snow .ql-formats ***REMOVED***
+  margin-right: 15px !important;
+***REMOVED***
+.ql-toolbar.ql-snow .ql-picker-label ***REMOVED***
+  border: 1px solid transparent !important;
+***REMOVED***
+.ql-toolbar.ql-snow .ql-picker-options ***REMOVED***
+  border: 1px solid transparent !important;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 2px 8px !important;
+  background-color: #363636 !important;
+***REMOVED***
+.ql-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-label ***REMOVED***
+  border-color: rgb(97, 97, 97) !important;
+***REMOVED***
+.ql-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-options ***REMOVED***
+  border-color: rgb(97, 97, 97) !important;
+***REMOVED***
+.ql-toolbar.ql-snow .ql-color-picker .ql-picker-item.ql-selected,
+.ql-toolbar.ql-snow .ql-color-picker .ql-picker-item:hover ***REMOVED***
+  border-color: #000 !important;
+***REMOVED***
+.ql-toolbar.ql-snow + .ql-container.ql-snow ***REMOVED***
+  border-top: 0 !important;
+***REMOVED***
+.ql-snow .ql-tooltip ***REMOVED***
+  background-color: #363636 !important;
+  border: 1px solid rgb(97, 97, 97) !important;
+  box-shadow: 0 0 5px #ddd !important;
+  color: #ffffff !important;
+  padding: 5px 12px !important;
+  white-space: nowrap !important;
+***REMOVED***
+.ql-snow .ql-tooltip::before ***REMOVED***
+  content: "Visit URL:" !important;
+  line-height: 26px !important;
+  margin-right: 8px !important;
+***REMOVED***
+.ql-snow .ql-tooltip input[type="text"] ***REMOVED***
+  display: none !important;
+  border: 1px solid rgb(97, 97, 97) !important;
+  font-size: 13px !important;
+  height: 26px !important;
+  margin: 0 !important;
+  padding: 3px 5px !important;
+  width: 170px !important;
+***REMOVED***
+.ql-snow .ql-tooltip a.ql-preview ***REMOVED***
+  display: inline-block !important;
+  max-width: 200px !important;
+  overflow-x: hidden !important;
+  text-overflow: ellipsis !important;
+  vertical-align: top !important;
+***REMOVED***
+.ql-snow .ql-tooltip a.ql-action::after ***REMOVED***
+  border-right: 1px solid rgb(97, 97, 97) !important;
+  content: "Edit" !important;
+  margin-left: 16px !important;
+  padding-right: 8px !important;
+***REMOVED***
+.ql-snow .ql-tooltip a.ql-remove::before ***REMOVED***
+  content: "Remove" !important;
+  margin-left: 8px !important;
+***REMOVED***
+.ql-snow .ql-tooltip a ***REMOVED***
+  line-height: 26px !important;
+***REMOVED***
+.ql-snow .ql-tooltip.ql-editing a.ql-preview,
+.ql-snow .ql-tooltip.ql-editing a.ql-remove ***REMOVED***
+  display: none !important;
+***REMOVED***
+.ql-snow .ql-tooltip.ql-editing input[type="text"] ***REMOVED***
+  display: inline-block !important;
+***REMOVED***
+.ql-snow .ql-tooltip.ql-editing a.ql-action::after ***REMOVED***
+  border-right: 0 !important;
+  content: "Save" !important;
+  padding-right: 0 !important;
+***REMOVED***
+.ql-snow .ql-tooltip[data-mode="link"]::before ***REMOVED***
+  content: "Enter link:" !important;
+***REMOVED***
+.ql-snow .ql-tooltip[data-mode="formula"]::before ***REMOVED***
+  content: "Enter formula:" !important;
+***REMOVED***
+.ql-snow .ql-tooltip[data-mode="video"]::before ***REMOVED***
+  content: "Enter video:" !important;
+***REMOVED***
+.ql-snow a ***REMOVED***
+  color: #36c3f2 !important;
+***REMOVED***
+.ql-container.ql-snow ***REMOVED***
+  border: 1px solid rgb(97, 97, 97) !important;
+***REMOVED***
+/*# sourceMappingURL=quill.snow.min.css.map */

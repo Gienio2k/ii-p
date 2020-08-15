@@ -8,7 +8,7 @@
 <script>
 import * as firebase from "firebase/app";
 import "firebase/auth";
-import "firebase/database";
+import "firebase/firestore";
 import FeedbackSection from "../components/adminPanel/FeedbackSection.vue";
 
 export default ***REMOVED***
@@ -21,20 +21,30 @@ export default ***REMOVED***
   ***REMOVED***,
   beforeCreate() ***REMOVED***
     let altThis = this;
-    firebase.auth().onAuthStateChanged(function (user) ***REMOVED***
+    firebase.auth().onAuthStateChanged(function(user) ***REMOVED***
       if (user) ***REMOVED***
         firebase
-          .database()
-          .ref(
-            "/users/" + user.email.substring(user.email.length - 9, 0) + "/rank"
+          .firestore()
+          .collection("users")
+          .where(
+            "username",
+            "==",
+            user.email.substring(user.email.length - 9, 0)
           )
-          .on("value", function (snapshot) ***REMOVED***
-            if (snapshot.val() == "admin") ***REMOVED***
-              altThis.authenticated = true;
-            ***REMOVED*** else ***REMOVED***
-              altThis.$router.push("/");
+          .onSnapshot(
+            (querySnapshot) => ***REMOVED***
+              querySnapshot.forEach(function(doc) ***REMOVED***
+                if (doc.data().rank == "admin") ***REMOVED***
+                  altThis.authenticated = true;
+                ***REMOVED*** else ***REMOVED***
+                  altThis.$router.push("/");
+                ***REMOVED***
+              ***REMOVED***);
+            ***REMOVED***,
+            (err) => ***REMOVED***
+              console.log(`Encountered error: $***REMOVED***err***REMOVED***`);
             ***REMOVED***
-          ***REMOVED***);
+          );
       ***REMOVED*** else ***REMOVED***
         altThis.$router.push("/");
       ***REMOVED***
@@ -43,7 +53,7 @@ export default ***REMOVED***
 ***REMOVED***;
 </script>
 
-<style lang='scss'>
+<style lang="scss">
 .adminPanel ***REMOVED***
   margin: 10px;
 ***REMOVED***
