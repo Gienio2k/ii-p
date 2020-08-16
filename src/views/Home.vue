@@ -31,17 +31,16 @@ export default {
 @import "../assets/stroke.scss";
 
 #homeWrapper {
-  margin-top: -25px;
   height: calc(100vh - 56px);
   text-align: center;
   user-select: none;
   .image {
-    position: absolute;
+    position: fixed;
     background-image: url(../assets/school.jpg);
     background-size: cover;
     background-position: center;
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     filter: blur(2.5px);
   }
   #info {

@@ -2,10 +2,10 @@
   <div class="d-flex flex-row">
     <feedback-item
       @open-dialog="openDialog"
-      v-for="post in feedbackPosts"
-      :timestamp="post.timestamp"
-      :content="post.content"
-      :key="post.timestamp"
+      v-for="{timestamp, content} in feedbackPosts"
+      :timestamp="timestamp"
+      :content="content"
+      :key="timestamp"
     />
     <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
       <v-toolbar dark color="blue darken-4">

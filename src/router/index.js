@@ -24,6 +24,16 @@ const routes = [
     component: Blog,
   },
   {
+    path: "/createpost",
+    name: "Blog",
+    component: Blog,
+  },
+  {
+    path: "/post",
+    name: "Blog",
+    component: Blog,
+  },
+  {
     path: "/admin",
     name: "AdminPanel",
     component: AdminPanel,
