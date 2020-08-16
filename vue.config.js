@@ -1,5 +1,5 @@
-module.exports = ***REMOVED***
+module.exports = {
   "transpileDependencies": [
     "vuetify"
   ]
-***REMOVED***
+}

@@ -1,32 +1,32 @@
 /* eslint-disable no-console */
 
-import ***REMOVED*** register ***REMOVED*** from 'register-service-worker'
+import { register } from 'register-service-worker'
 
-if (process.env.NODE_ENV === 'production') ***REMOVED***
-  register(`$***REMOVED***process.env.BASE_URL***REMOVED***service-worker.js`, ***REMOVED***
-    ready () ***REMOVED***
+if (process.env.NODE_ENV === 'production') {
+  register(`${process.env.BASE_URL}service-worker.js`, {
+    ready () {
       console.log(
         'App is being served from cache by a service worker.\n' +
         'For more details, visit https://goo.gl/AFskqB'
       )
-    ***REMOVED***,
-    registered () ***REMOVED***
+    },
+    registered () {
       console.log('Service worker has been registered.')
-    ***REMOVED***,
-    cached () ***REMOVED***
+    },
+    cached () {
       console.log('Content has been cached for offline use.')
-    ***REMOVED***,
-    updatefound () ***REMOVED***
+    },
+    updatefound () {
       console.log('New content is downloading.')
-    ***REMOVED***,
-    updated () ***REMOVED***
+    },
+    updated () {
       console.log('New content is available; please refresh.')
-    ***REMOVED***,
-    offline () ***REMOVED***
+    },
+    offline () {
       console.log('No internet connection found. App is running in offline mode.')
-    ***REMOVED***,
-    error (error) ***REMOVED***
+    },
+    error (error) {
       console.error('Error during service worker registration:', error)
-    ***REMOVED***
-  ***REMOVED***)
-***REMOVED***
+    }
+  })
+}

@@ -1,13 +1,13 @@
-***REMOVED***
-  "hosting": ***REMOVED***
+{
+  "hosting": {
     "site": "klasa-ii-p",
     "public": "dist",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
-      ***REMOVED***
+      {
         "source": "**",
         "destination": "/index.html"
-      ***REMOVED***
+      }
     ]
-  ***REMOVED***
-***REMOVED***
+  }
+}

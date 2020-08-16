@@ -1,5 +1,5 @@
-module.exports = ***REMOVED***
+module.exports = {
   presets: [
     '@vue/cli-plugin-babel/preset'
   ]
-***REMOVED***
+}

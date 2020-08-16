@@ -20,26 +20,26 @@ import FeedbackHandler from "./items/FeedbackHandler.vue";
 
 //import reverseObject from "../../utils/reverseObject";
 
-export default ***REMOVED***
+export default {
   name: "FeedbackSection",
-  components: ***REMOVED*** FeedbackHandler ***REMOVED***,
+  components: { FeedbackHandler },
 
-  data() ***REMOVED***
-    return ***REMOVED******REMOVED***;
-  ***REMOVED***,
-***REMOVED***;
+  data() {
+    return {};
+  },
+};
 </script>
 
 <style lang="scss">
-.feedbackSection ***REMOVED***
-  h3 ***REMOVED***
+.feedbackSection {
+  h3 {
     margin-bottom: 10px;
-  ***REMOVED***
-  .wrapper ***REMOVED***
+  }
+  .wrapper {
     padding: 10px;
     margin-right: -60px;
     overflow-x: scroll;
     min-height: 300px;
-  ***REMOVED***
-***REMOVED***
+  }
+}
 </style>

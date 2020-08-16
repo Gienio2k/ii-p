@@ -7,7 +7,7 @@
       transition="dialog-bottom-transition"
       v-model="loginDialog"
     >
-      <template v-slot:activator="***REMOVED*** on, attrs ***REMOVED***">
+      <template v-slot:activator="{ on, attrs }">
         <v-btn
           block
           outlined
@@ -123,9 +123,9 @@
       </v-card>
     </v-dialog>
     <div class="account" v-else>
-      <strong class="d-flex flex-column">***REMOVED******REMOVED*** rank ***REMOVED******REMOVED***</strong>
+      <strong class="d-flex flex-column">{{ rank }}</strong>
       <v-chip>
-        <p>***REMOVED******REMOVED*** $store.state.user ***REMOVED******REMOVED***</p>
+        <p>{{ $store.state.user }}</p>
       </v-chip>
       <v-btn class="signupBtn d-flex flex-column" @click="signout"
         >WYLOGUJ</v-btn
@@ -135,10 +135,10 @@
       v-if="$store.state.userRank == 'admin'"
       class="adminBtn"
       @click="
-        () => ***REMOVED***
+        () => {
           $router.push('/admin');
           $emit('set-admin-page');
-        ***REMOVED***
+        }
       "
       >ADMIN PANEL</v-btn
     >
@@ -150,10 +150,10 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 
-export default ***REMOVED***
+export default {
   name: "Login",
-  data() ***REMOVED***
-    return ***REMOVED***
+  data() {
+    return {
       loginBtnLoading: false,
       signupBtnLoading: false,
       tab: 0,
@@ -181,13 +181,13 @@ export default ***REMOVED***
         (v) => !!v || "Wpisz hasło",
         (v) => v == this.signupPasswd || "Hasła się nie zgadzają",
       ],
-    ***REMOVED***;
-  ***REMOVED***,
+    };
+  },
 
-  methods: ***REMOVED***
-    login() ***REMOVED***
+  methods: {
+    login() {
       let altThis = this;
-      if (this.$refs.loginForm.validate()) ***REMOVED***
+      if (this.$refs.loginForm.validate()) {
         this.loginBtnLoading = true;
         firebase
           .auth()
@@ -195,33 +195,33 @@ export default ***REMOVED***
             this.loginUsername + "@ii-p.com",
             this.loginPasswd
           )
-          .catch(function(error) ***REMOVED***
+          .catch(function(error) {
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
-            if (errorCode == "auth/wrong-password") ***REMOVED***
+            if (errorCode == "auth/wrong-password") {
               altThis.loginPasswd = "";
               altThis.passwdErrorText = "Niepoprawne hasło";
-            ***REMOVED*** else if (errorCode == "auth/too-many-requests") ***REMOVED***
+            } else if (errorCode == "auth/too-many-requests") {
               altThis.loginPasswd = "";
               altThis.passwdErrorText =
                 "Zbyt dużo niepomyślnych logowań, spróbuj ponownie za kilkanaście sekund";
-            ***REMOVED*** else if (errorCode == "auth/user-not-found") ***REMOVED***
+            } else if (errorCode == "auth/user-not-found") {
               altThis.loginUsername = "";
               altThis.loginErrorText = "Nie znaleziono takiego użytkownika";
-            ***REMOVED*** else ***REMOVED***
-              altThis.passwdErrorText = `Nieoczekiwany błąd: $***REMOVED***errorCode***REMOVED***. Zgłoś problem do programisty`;
-            ***REMOVED***
+            } else {
+              altThis.passwdErrorText = `Nieoczekiwany błąd: ${errorCode}. Zgłoś problem do programisty`;
+            }
             console.error(errorCode, "\n", errorMessage);
-          ***REMOVED***)
-          .then(() => ***REMOVED***
+          })
+          .then(() => {
             this.loginBtnLoading = false;
-          ***REMOVED***);
-      ***REMOVED***
-    ***REMOVED***,
-    signup() ***REMOVED***
+          });
+      }
+    },
+    signup() {
       let altThis = this;
-      if (this.$refs.signupForm.validate()) ***REMOVED***
+      if (this.$refs.signupForm.validate()) {
         this.signupBtnLoading = true;
         firebase
           .auth()
@@ -229,24 +229,24 @@ export default ***REMOVED***
             this.signupLogin + "@ii-p.com",
             this.signupPasswd
           )
-          .catch(function(error) ***REMOVED***
+          .catch(function(error) {
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
-            if (errorCode == "auth/email-already-in-use") ***REMOVED***
+            if (errorCode == "auth/email-already-in-use") {
               altThis.signupLogin = "";
               altThis.loginErrorText = "Podany login jest zajęty";
-            ***REMOVED***
+            }
             console.error(errorCode, "\n", errorMessage);
             return;
-          ***REMOVED***)
-          .then(() => ***REMOVED***
+          })
+          .then(() => {
             this.signupBtnLoading = false;
             firebase
               .firestore()
               .collection("users")
               .doc()
-              .set(***REMOVED***
+              .set({
                 rank: "user",
                 username: firebase
                   .auth()
@@ -254,117 +254,117 @@ export default ***REMOVED***
                     firebase.auth().currentUser.email.length - 9,
                     0
                   ),
-              ***REMOVED***);
-          ***REMOVED***);
-      ***REMOVED***
-    ***REMOVED***,
-    signout() ***REMOVED***
+              });
+          });
+      }
+    },
+    signout() {
       firebase.auth().signOut();
-    ***REMOVED***,
-  ***REMOVED***,
-  created() ***REMOVED***
+    },
+  },
+  created() {
     let altThis = this;
-    firebase.auth().onAuthStateChanged((firebaseUser) => ***REMOVED***
-      if (firebaseUser) ***REMOVED***
+    firebase.auth().onAuthStateChanged((firebaseUser) => {
+      if (firebaseUser) {
         let username = firebaseUser.email.substring(
           firebaseUser.email.length - 9,
           0
         );
-        this.$store.commit("setState", ***REMOVED*** name: "loggedIn", val: true ***REMOVED***);
-        this.$store.commit("setState", ***REMOVED***
+        this.$store.commit("setState", { name: "loggedIn", val: true });
+        this.$store.commit("setState", {
           name: "user",
           val: username,
-        ***REMOVED***);
+        });
         firebase
           .firestore()
           .collection("users")
           .where("username", "==", username)
           .onSnapshot(
-            (querySnapshot) => ***REMOVED***
-              querySnapshot.forEach(function(doc) ***REMOVED***
-                altThis.$store.commit("setState", ***REMOVED***
+            (querySnapshot) => {
+              querySnapshot.forEach(function(doc) {
+                altThis.$store.commit("setState", {
                   name: "userRank",
                   val: doc.data().rank,
-                ***REMOVED***);
-              ***REMOVED***);
-            ***REMOVED***,
-            (err) => ***REMOVED***
-              console.log(`Encountered error: $***REMOVED***err***REMOVED***`);
-            ***REMOVED***
+                });
+              });
+            },
+            (err) => {
+              console.log(`Encountered error: ${err}`);
+            }
           );
-      ***REMOVED*** else ***REMOVED***
-        this.$store.commit("setState", ***REMOVED*** name: "loggedIn", val: false ***REMOVED***);
-        this.$store.commit("setState", ***REMOVED*** name: "user", val: "" ***REMOVED***);
-        this.$store.commit("setState", ***REMOVED***
+      } else {
+        this.$store.commit("setState", { name: "loggedIn", val: false });
+        this.$store.commit("setState", { name: "user", val: "" });
+        this.$store.commit("setState", {
           name: "userRank",
           val: "",
-        ***REMOVED***);
-      ***REMOVED***
+        });
+      }
       this.loginUsername = "";
       this.loginPasswd = "";
       this.signupLogin = "";
       this.signupPasswd = "";
       this.signupConfirmPasswd = "";
       this.loginDialog = false;
-    ***REMOVED***);
-  ***REMOVED***,
-  computed: ***REMOVED***
-    rank: function() ***REMOVED***
-      switch (this.$store.state.userRank) ***REMOVED***
+    });
+  },
+  computed: {
+    rank: function() {
+      switch (this.$store.state.userRank) {
         case "user":
           return "Użytkownik";
         case "admin":
           return "Administrator";
-      ***REMOVED***
+      }
       return "";
-    ***REMOVED***,
-  ***REMOVED***,
-***REMOVED***;
+    },
+  },
+};
 </script>
 
 <style lang="scss">
-.login ***REMOVED***
+.login {
   margin: 20px;
   margin-top: 0px;
-  .v-avatar ***REMOVED***
+  .v-avatar {
     transform: scale(150%);
     margin-bottom: 20px;
     margin-left: auto;
     margin-right: auto;
     font-size: 35px;
     padding-top: 15px;
-  ***REMOVED***
-  .loginBtn ***REMOVED***
+  }
+  .loginBtn {
     margin-top: 10px;
-  ***REMOVED***
-  .signupBtn ***REMOVED***
+  }
+  .signupBtn {
     margin-top: 10px;
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
-.v-slide-group__prev ***REMOVED***
+.v-slide-group__prev {
   position: absolute;
-***REMOVED***
+}
 
 .loginForm,
-.signupForm ***REMOVED***
+.signupForm {
   position: relative;
   margin-top: calc(50vh - 200px);
   width: 300px;
   left: 50%;
   right: 50%;
   transform: translate(-50%);
-  .v-text-field ***REMOVED***
+  .v-text-field {
     max-width: 300px;
-  ***REMOVED***
-  .v-btn ***REMOVED***
+  }
+  .v-btn {
     left: 50%;
     right: 50%;
     transform: translateX(-50%);
     margin-top: 20px;
-  ***REMOVED***
+  }
   .decorativeLoginIcon,
-  .decorativeSignupIcon ***REMOVED***
+  .decorativeSignupIcon {
     margin-left: -20px;
     margin-bottom: 40px;
     margin-top: -40px;
@@ -372,33 +372,33 @@ export default ***REMOVED***
     right: 50%;
     transform: translateX(-50%);
     transform: scale(200%);
-  ***REMOVED***
-***REMOVED***
+  }
+}
 .loginCard,
-.signupCard ***REMOVED***
+.signupCard {
   padding: 20px;
-***REMOVED***
-.account ***REMOVED***
+}
+.account {
   text-align: center;
-  p ***REMOVED***
+  p {
     font-size: 20px;
     padding-top: 13px;
-  ***REMOVED***
-  .v-chip ***REMOVED***
+  }
+  .v-chip {
     margin-top: 10px;
-  ***REMOVED***
-  .v-btn ***REMOVED***
+  }
+  .v-btn {
     margin-top: 20px;
     left: 50%;
     right: 50%;
     transform: translateX(-50%);
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
-.adminBtn ***REMOVED***
+.adminBtn {
   margin-top: 10px;
   left: 50%;
   right: 50%;
   transform: translateX(-50%);
-***REMOVED***
+}
 </style>

@@ -1,17 +1,17 @@
-module.exports = ***REMOVED***
+module.exports = {
   root: true,
-  env: ***REMOVED***
+  env: {
     node: true
-  ***REMOVED***,
+  },
   'extends': [
     'plugin:vue/essential',
     'eslint:recommended'
   ],
-  parserOptions: ***REMOVED***
+  parserOptions: {
     parser: 'babel-eslint'
-  ***REMOVED***,
-  rules: ***REMOVED***
+  },
+  rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
-  ***REMOVED***
-***REMOVED***
+  }
+}

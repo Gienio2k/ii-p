@@ -3,12 +3,12 @@
 </template>
 
 <script>
-export default ***REMOVED***
+export default {
   name: "Blog",
-  data() ***REMOVED***
-    return ***REMOVED******REMOVED***;
-  ***REMOVED***,
-***REMOVED***;
+  data() {
+    return {};
+  },
+};
 </script>
 
 <style lang='scss'>

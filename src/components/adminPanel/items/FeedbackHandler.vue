@@ -7,65 +7,54 @@
       :content="post.content"
       :key="post.timestamp"
     />
-    <v-dialog
-      v-model="dialog"
-      fullscreen
-      hide-overlay
-      transition="dialog-bottom-transition"
-    >
+    <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
       <v-toolbar dark color="blue darken-4">
         <v-btn icon dark @click="closeDialog">
           <v-icon>mdi-close</v-icon>
         </v-btn>
-        <v-toolbar-title>***REMOVED******REMOVED*** timestampDate ***REMOVED******REMOVED***</v-toolbar-title>
+        <v-toolbar-title>{{ timestampDate }}</v-toolbar-title>
       </v-toolbar>
-      <v-card style="padding: 15px;"
-        ><div class="dialogContent ql-editor">
-          Musisz zamknąć to okienko i jeszcze raz je otworzyć
-        </div></v-card
-      >
+      <v-card style="padding: 15px;">
+        <div class="dialogContent ql-editor" v-html="content"></div>
+      </v-card>
     </v-dialog>
   </div>
 </template>
 
 <script>
 import FeedbackItem from "./FeedbackItem.vue";
-import $ from "jquery";
 import * as firebase from "firebase/app";
 import "firebase/firestore";
 //import wait from "../../../utils/wait";
 
-export default ***REMOVED***
+export default {
   name: "FeedbackHandler",
   props: [],
-  components: ***REMOVED*** FeedbackItem ***REMOVED***,
-  data() ***REMOVED***
-    return ***REMOVED***
+  components: { FeedbackItem },
+  data() {
+    return {
       feedbackPosts: [],
       dialog: false,
       timestamp: "",
       timestampDate: "",
       content: "",
-    ***REMOVED***;
-  ***REMOVED***,
-  methods: ***REMOVED***
-    openDialog(timestampDate, timestamp, content) ***REMOVED***
-      console.log("opent");
+    };
+  },
+  methods: {
+    openDialog(timestampDate, timestamp, content) {
       this.timestampDate = timestampDate;
       this.timestamp = timestamp;
       this.content = content;
-      $(".dialogContent").html(content);
       this.dialog = true;
-    ***REMOVED***,
-    closeDialog() ***REMOVED***
-      console.log("colsed");
+    },
+    closeDialog() {
       this.timestampDate = "";
       this.timestamp = "";
       this.content = "";
       this.dialog = false;
-    ***REMOVED***,
-  ***REMOVED***,
-  created() ***REMOVED***
+    },
+  },
+  created() {
     //that's because we need to mount dialog which won't mount until we open it
     this.openDialog();
     //
@@ -75,27 +64,24 @@ export default ***REMOVED***
       .collection("feedback")
       .orderBy("timestamp")
       .onSnapshot(
-        (docSnapshot) => ***REMOVED***
+        (docSnapshot) => {
           let posts = [];
-          docSnapshot.forEach((doc) => ***REMOVED***
-            posts.push(***REMOVED***
+          docSnapshot.forEach((doc) => {
+            posts.push({
               content: doc.data().content,
-              timestamp: doc
-                .data()
-                .timestamp.toDate()
-                .getTime(),
-            ***REMOVED***);
-          ***REMOVED***);
+              timestamp: doc.data().timestamp.toDate().getTime(),
+            });
+          });
           altThis.feedbackPosts = posts.reverse();
-        ***REMOVED***,
-        (err) => ***REMOVED***
-          console.log(`Encountered error: $***REMOVED***err***REMOVED***`);
-        ***REMOVED***
+        },
+        (err) => {
+          console.log(`Encountered error: ${err}`);
+        }
       );
     //
     this.closeDialog();
-  ***REMOVED***,
-***REMOVED***;
+  },
+};
 </script>
 
 <style lang="scss"></style>

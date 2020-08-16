@@ -7,7 +7,7 @@
         <div class="login d-flex flex-column">
           <v-avatar :color="avatar">
             <v-icon v-if="!$store.state.loggedIn" x-large>mdi-account-circle</v-icon>
-            <p style="color: white;" v-else>***REMOVED******REMOVED*** $store.state.user.substring(0, 1).toUpperCase() ***REMOVED******REMOVED***</p>
+            <p style="color: white;" v-else>{{ $store.state.user.substring(0, 1).toUpperCase() }}</p>
           </v-avatar>
           <Login @set-admin-page="activePage = 'AdminPanel'" />
         </div>
@@ -81,76 +81,76 @@
 <script>
 import Login from "./components/Login.vue";
 
-export default ***REMOVED***
+export default {
   name: "App",
 
-  components: ***REMOVED*** Login ***REMOVED***,
+  components: { Login },
 
-  data() ***REMOVED***
-    return ***REMOVED***
+  data() {
+    return {
       activePage: this.$router.currentRoute.name,
       drawer: null,
-    ***REMOVED***;
-  ***REMOVED***,
+    };
+  },
 
-  methods: ***REMOVED***
-    themeChange() ***REMOVED***
-      if (localStorage.getItem("dark")) ***REMOVED***
+  methods: {
+    themeChange() {
+      if (localStorage.getItem("dark")) {
         localStorage.setItem(
           "dark",
           localStorage.getItem("dark") == "true" ? "false" : "true"
         );
-      ***REMOVED*** else ***REMOVED***
+      } else {
         localStorage.setItem("dark", "false");
-      ***REMOVED***
-    ***REMOVED***,
-  ***REMOVED***,
-  created() ***REMOVED***
-    if (localStorage.getItem("dark")) ***REMOVED***
+      }
+    },
+  },
+  created() {
+    if (localStorage.getItem("dark")) {
       this.$vuetify.theme.dark =
         localStorage.getItem("dark") == "true" ? true : false;
-    ***REMOVED***
-  ***REMOVED***,
-  computed: ***REMOVED***
-    avatar: function () ***REMOVED***
+    }
+  },
+  computed: {
+    avatar: function () {
       return this.$store.state.loggedIn ? "blue darken-4" : "";
-    ***REMOVED***,
-  ***REMOVED***,
-***REMOVED***;
+    },
+  },
+};
 </script>
 
 <style lang="scss">
 @import "./assets/stroke.scss";
 
-@font-face ***REMOVED***
+@font-face {
   font-family: RobotoSlab;
   src: url(./assets/RobotoSlab-Regular.ttf);
-***REMOVED***
+}
 
-.v-application ***REMOVED***
+.v-application {
   background-color: var(--v-background-base) !important;
-***REMOVED***
+}
 
-.logo ***REMOVED***
+.logo {
   color: #1a1a1a;
   font-size: 72px;
   font-family: RobotoSlab;
   margin-top: 45px;
   margin-left: 15px;
   user-select: none;
-***REMOVED***
+}
 
-.lightLogo ***REMOVED***
+.lightLogo {
   @include stroke(5px, #ffffff);
   color: #0d47a1;
-***REMOVED***
+}
 
-.darkLogo ***REMOVED***
+.darkLogo {
   @include stroke(5px, #0d47a1);
   color: #ffffff;
-***REMOVED***
+}
 
-#themeChangeBtn ***REMOVED***
+#themeChangeBtn {
   position: absolute;
   width: 87px;
   padding: 0;
@@ -158,26 +158,26 @@ export default ***REMOVED***
   left: 50%;
   right: 50%;
   transform: translateX(-50%);
-  @media (max-height: 530px) ***REMOVED***
+  @media (max-height: 530px) {
     position: relative;
     left: 50%;
     right: 50%;
     transform: translateX(-50%);
     top: 35px;
-  ***REMOVED***
-  .themeChangeContents ***REMOVED***
+  }
+  .themeChangeContents {
     position: absolute;
-    .v-icon ***REMOVED***
+    .v-icon {
       margin-right: 15px;
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
-a ***REMOVED***
+a {
   text-decoration: unset;
-***REMOVED***
+}
 
-.v-list-item ***REMOVED***
+.v-list-item {
   margin-bottom: 10px;
-***REMOVED***
+}
 </style>

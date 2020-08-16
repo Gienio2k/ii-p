@@ -11,18 +11,18 @@ import "firebase/auth";
 import "firebase/firestore";
 import FeedbackSection from "../components/adminPanel/FeedbackSection.vue";
 
-export default ***REMOVED***
+export default {
   name: "AdminPanel",
-  components: ***REMOVED*** FeedbackSection ***REMOVED***,
-  data() ***REMOVED***
-    return ***REMOVED***
+  components: { FeedbackSection },
+  data() {
+    return {
       authenticated: false,
-    ***REMOVED***;
-  ***REMOVED***,
-  beforeCreate() ***REMOVED***
+    };
+  },
+  beforeCreate() {
     let altThis = this;
-    firebase.auth().onAuthStateChanged(function(user) ***REMOVED***
-      if (user) ***REMOVED***
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
         firebase
           .firestore()
           .collection("users")
@@ -32,33 +32,33 @@ export default ***REMOVED***
             user.email.substring(user.email.length - 9, 0)
           )
           .onSnapshot(
-            (querySnapshot) => ***REMOVED***
-              querySnapshot.forEach(function(doc) ***REMOVED***
-                if (doc.data().rank == "admin") ***REMOVED***
+            (querySnapshot) => {
+              querySnapshot.forEach(function(doc) {
+                if (doc.data().rank == "admin") {
                   altThis.authenticated = true;
-                ***REMOVED*** else ***REMOVED***
+                } else {
                   altThis.$router.push("/");
-                ***REMOVED***
-              ***REMOVED***);
-            ***REMOVED***,
-            (err) => ***REMOVED***
-              console.log(`Encountered error: $***REMOVED***err***REMOVED***`);
-            ***REMOVED***
+                }
+              });
+            },
+            (err) => {
+              console.log(`Encountered error: ${err}`);
+            }
           );
-      ***REMOVED*** else ***REMOVED***
+      } else {
         altThis.$router.push("/");
-      ***REMOVED***
-    ***REMOVED***);
-  ***REMOVED***,
-***REMOVED***;
+      }
+    });
+  },
+};
 </script>
 
 <style lang="scss">
-.adminPanel ***REMOVED***
+.adminPanel {
   margin: 10px;
-***REMOVED***
+}
 
-.header ***REMOVED***
+.header {
   margin: 20px;
-***REMOVED***
+}
 </style>

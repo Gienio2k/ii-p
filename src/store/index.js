@@ -3,18 +3,18 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-export default new Vuex.Store(***REMOVED***
-  state: ***REMOVED***
+export default new Vuex.Store({
+  state: {
     feedbackData: "",
     loggedIn: false,
     user: "",
     userRank: "",
-  ***REMOVED***,
-  mutations: ***REMOVED***
-    setState(state, payload) ***REMOVED***
+  },
+  mutations: {
+    setState(state, payload) {
       state[payload.name] = payload.val;
-    ***REMOVED***,
-  ***REMOVED***,
-  actions: ***REMOVED******REMOVED***,
-  modules: ***REMOVED******REMOVED***,
-***REMOVED***);
+    },
+  },
+  actions: {},
+  modules: {},
+});

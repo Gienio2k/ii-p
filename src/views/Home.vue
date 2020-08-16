@@ -10,7 +10,7 @@
         >
           <p
             style="margin: 0;"
-          >***REMOVED******REMOVED*** drawer ? 'Po więcej funkcji spójrz na menu po lewej' : 'Po więcej funkcji otwórz menu w lewym górnym rogu'***REMOVED******REMOVED***</p>
+          >{{ drawer ? 'Po więcej funkcji spójrz na menu po lewej' : 'Po więcej funkcji otwórz menu w lewym górnym rogu'}}</p>
         </v-card>
       </div>
     </div>
@@ -20,22 +20,22 @@
 <script>
 // @ is an alias to /src
 
-export default ***REMOVED***
+export default {
   name: "Home",
-  components: ***REMOVED******REMOVED***,
+  components: {},
   props: ["drawer"],
-***REMOVED***;
+};
 </script>
 
 <style scoped lang="scss">
 @import "../assets/stroke.scss";
 
-#homeWrapper ***REMOVED***
+#homeWrapper {
   margin-top: -25px;
   height: calc(100vh - 56px);
   text-align: center;
   user-select: none;
-  .image ***REMOVED***
+  .image {
     position: absolute;
     background-image: url(../assets/school.jpg);
     background-size: cover;
@@ -43,23 +43,23 @@ export default ***REMOVED***
     height: 100%;
     width: 100%;
     filter: blur(2.5px);
-  ***REMOVED***
-  #info ***REMOVED***
+  }
+  #info {
     position: relative;
     z-index: 2;
     padding: 20px;
     padding-top: 100px;
     background-color: transparent;
-    .header ***REMOVED***
+    .header {
       width: inherit;
       font-size: 50px;
       line-height: 120%;
       color: white;
       @include stroke(3px, #0d47a1);
-    ***REMOVED***
-    p ***REMOVED***
+    }
+    p {
       margin-top: 20px;
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+    }
+  }
+}
 </style>
