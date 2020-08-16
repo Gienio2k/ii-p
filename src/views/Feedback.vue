@@ -39,7 +39,6 @@
 import * as firebase from "firebase/app";
 import "firebase/firestore";
 import { VueEditor } from "vue2-editor";
-import $ from "jquery";
 
 export default {
   name: "Feedback",
@@ -73,12 +72,7 @@ export default {
       this.dialog = false;
     },
   },
-  mounted() {
-    if (this.$vuetify.theme.dark) {
-      //$("#tiptap").css("color", "white !important");
-      console.log($);
-    }
-  },
+  mounted() {},
 };
 </script>
 
