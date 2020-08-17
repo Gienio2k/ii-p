@@ -1,5 +1,5 @@
 <template>
-  <v-card class="post">
+  <v-card class="post" :class="'post' + timestamp">
     <div
       @click="seePost"
       class="titleImage"
@@ -19,7 +19,7 @@
         <v-spacer></v-spacer>
         <p class="timestamp">{{timestampDate}}</p>
       </div>
-      <div class="content" v-html="content"></div>
+      <div class="content ql-editor" v-html="content"></div>
       <div class="tooLarge" v-if="tooLarge">
         <v-btn @click="seePost" dark outlined>czytaj więcej</v-btn>
       </div>
@@ -56,13 +56,19 @@ export default {
   },
   methods: {
     seePost() {
-      this.$router.push("/post/" + this.timestamp);
+      this.$store.commit("setState", {
+        name: "scroll",
+        val: document.querySelector("html").scrollTop + 56,
+      });
+      this.$router.push("/blog/post/" + this.timestamp);
     },
   },
 };
 </script>
 
 <style lang='scss'>
+@import url(https://cdn.bootcss.com/quill/1.3.6/quill.snow.min.css);
+
 .post {
   margin-top: 20px;
   .title {
@@ -86,9 +92,16 @@ export default {
   }
   .content {
     max-height: 175px;
-    overflow: hidden;
+    overflow: hidden !important;
     user-select: none;
     cursor: pointer !important;
+  }
+  .credentials {
+    height: 32px;
+    .timestamp {
+      line-height: 32px;
+    }
+    margin-bottom: 20px;
   }
   .tooLarge {
     position: relative;

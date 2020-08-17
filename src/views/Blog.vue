@@ -1,11 +1,16 @@
 <template>
-  <div>
+  <div class="post0">
     <div class="image"></div>
     <div class="blog">
       <div class="header">
         <h1>Aktualności</h1>
         <div class="d-flex flex-column align-end">
-          <v-btn class="addBtn" depressed v-if="$store.state.loggedIn">
+          <v-btn
+            @click="$router.push('/blog/createpost')"
+            class="addBtn"
+            depressed
+            v-if="$store.state.loggedIn"
+          >
             <v-icon left>mdi-pencil</v-icon>napisz post
           </v-btn>
         </div>
@@ -51,6 +56,9 @@ export default {
     };
   },
   created() {
+    this.$vuetify.goTo(this.$store.state.scroll, {
+      duration: 0,
+    });
     firebase
       .firestore()
       .collection("blog")
@@ -98,7 +106,7 @@ export default {
 .blog {
   position: relative;
   z-index: 2;
-  padding: 40px;
+  padding: 20px;
   .header {
     h1 {
       text-align: center;

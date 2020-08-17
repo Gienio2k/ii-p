@@ -4,6 +4,8 @@ import Home from "../views/Home.vue";
 import Feedback from "../views/Feedback.vue";
 import AdminPanel from "../views/AdminPanel.vue";
 import Blog from "../views/Blog.vue";
+import CreatePost from "../views/CreatePost.vue";
+import SeePost from "../views/SeePost.vue";
 
 Vue.use(VueRouter);
 
@@ -24,15 +26,16 @@ const routes = [
     component: Blog,
   },
   {
-    path: "/createpost",
-    name: "Blog",
-    component: Blog,
+    path: "/blog/createpost",
+    name: "CreatePost",
+    component: CreatePost,
   },
   {
-    path: "/post",
-    name: "Blog",
-    component: Blog,
+    path: "/blog/post/:timestamp",
+    name: "Post",
+    component: SeePost,
   },
+
   {
     path: "/admin",
     name: "AdminPanel",

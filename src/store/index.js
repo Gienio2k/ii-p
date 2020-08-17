@@ -9,6 +9,7 @@ export default new Vuex.Store({
     loggedIn: false,
     user: "",
     userRank: "",
+    scroll: 0,
   },
   mutations: {
     setState(state, payload) {

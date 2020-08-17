@@ -41,7 +41,7 @@
             </v-list-item-content>
           </v-list-item>
         </router-link>
-        <router-link to="feedback">
+        <router-link to="/feedback">
           <v-list-item
             @click="activePage = 'Feedback'"
             :class="[activePage == 'Feedback' ? 'v-list-item--active' : '']"
@@ -69,6 +69,19 @@
     <v-app-bar app clipped-left color="blue darken-4">
       <v-app-bar-nav-icon dark large @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <h1 :class="[$vuetify.theme.dark ? 'darkLogo' : 'lightLogo', 'logo']">IIP</h1>
+
+      <v-btn
+        v-if="$router.currentRoute.name == 'Post' || $router.currentRoute.name == 'CreatePost'"
+        style="top: 25px; outline: none;"
+        fab
+        color="blue darken-2"
+        top
+        right
+        fixed
+        @click="handleFab"
+      >
+        <v-icon>mdi-arrow-left</v-icon>
+      </v-btn>
     </v-app-bar>
 
     <v-main>
@@ -94,6 +107,9 @@ export default {
   },
 
   methods: {
+    handleFab() {
+      this.$router.push("/blog");
+    },
     themeChange() {
       if (localStorage.getItem("dark")) {
         localStorage.setItem(
@@ -112,7 +128,7 @@ export default {
     }
   },
   computed: {
-    avatar: function () {
+    avatar() {
       return this.$store.state.loggedIn ? "blue darken-4" : "";
     },
   },
