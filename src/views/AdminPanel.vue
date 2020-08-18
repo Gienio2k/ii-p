@@ -2,6 +2,10 @@
   <div v-if="authenticated" class="adminPanel">
     <h2 class="header">Panel administracyjny</h2>
     <feedback-section />
+    <br />
+    <blog-section />
+    <br />
+    <br />
   </div>
 </template>
 
@@ -10,10 +14,10 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import FeedbackSection from "../components/adminPanel/FeedbackSection.vue";
-
+import BlogSection from "../components/adminPanel/BlogSection";
 export default {
   name: "AdminPanel",
-  components: { FeedbackSection },
+  components: { FeedbackSection, BlogSection },
   data() {
     return {
       authenticated: false,
@@ -21,7 +25,7 @@ export default {
   },
   beforeCreate() {
     let altThis = this;
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         firebase
           .firestore()
@@ -33,7 +37,7 @@ export default {
           )
           .onSnapshot(
             (querySnapshot) => {
-              querySnapshot.forEach(function(doc) {
+              querySnapshot.forEach(function (doc) {
                 if (doc.data().rank == "admin") {
                   altThis.authenticated = true;
                 } else {

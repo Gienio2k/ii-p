@@ -7,6 +7,9 @@
       :content="content"
       :key="timestamp"
     />
+    <div style=" width: 100%;" v-if="feedbackPosts.length == 0">
+      <h1 style="line-height: 300px; text-align:center;">Brak postów</h1>
+    </div>
     <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
       <v-toolbar dark color="blue darken-4">
         <v-btn icon dark @click="closeDialog">

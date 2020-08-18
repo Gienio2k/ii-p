@@ -19,7 +19,7 @@
           <v-spacer></v-spacer>
           <p class="timestamp">{{timestampDate}}</p>
         </div>
-        <div class="postContent" v-html="post.content"></div>
+        <div class="postContent ql-editor" v-html="post.content"></div>
       </div>
       <div v-else class="else">
         <div class="postTitleImage" :style="'background-image: url(\'' + post.image + '\');'" />

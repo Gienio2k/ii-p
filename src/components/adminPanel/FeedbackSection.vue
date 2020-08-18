@@ -1,6 +1,8 @@
 <template>
   <div class="feedbackSection">
-    <h3>Feedback</h3>
+    <v-chip>
+      <h3>Feedback</h3>
+    </v-chip>
     <v-card outlined class="wrapper">
       <!-- <div class="d-flex flex-row" v-if="feedbackPosts.length > 0"> -->
       <feedback-handler />
@@ -10,7 +12,7 @@
         v-else
       >
         Brak wiadomości
-      </div> -->
+      </div>-->
     </v-card>
   </div>
 </template>
@@ -32,7 +34,7 @@ export default {
 
 <style lang="scss">
 .feedbackSection {
-  h3 {
+  .v-chip {
     margin-bottom: 10px;
   }
   .wrapper {
