@@ -15,6 +15,16 @@ self.addEventListener("message", (e) => {
   if (e.data.action == "skipWaiting") self.skipWaiting();
 });
 
+import * as firebase from "firebase/app";
+import "firebase/firestore";
+
+firebase
+  .firestore()
+  .collection("feedback")
+  .onSnapshot(() => {
+    self.registration.showNotification("Henlo", { body: "fre" });
+  });
+
 //Web Push Notifications//
 let click_open_url;
 self.addEventListener("push", function(event) {
