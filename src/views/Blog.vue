@@ -107,20 +107,24 @@ export default {
   position: relative;
   z-index: 2;
   padding: 20px;
+
   .header {
+    max-width: 740px;
+    margin-left: auto;
+    margin-right: auto;
     h1 {
       text-align: center;
       -webkit-text-stroke: 1px black;
       text-shadow: 2px 2px 9px rgba(0, 0, 0, 1);
       color: white;
-
       margin-bottom: 20px;
     }
     .addBtn {
-      margin-right: -20px;
       @media (max-width: 670px) {
         margin-left: auto;
         margin-right: auto;
+      }
+      @media (min-width: 740px) {
       }
     }
   }

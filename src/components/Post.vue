@@ -71,6 +71,9 @@ export default {
 
 .post {
   margin-top: 20px;
+  max-width: 740px;
+  margin-left: auto;
+  margin-right: auto;
   .title {
     font-size: 30px !important;
     padding: 10px;
@@ -85,6 +88,7 @@ export default {
   }
   .titleImage {
     height: 25vw;
+    max-height: 250px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

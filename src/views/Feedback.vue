@@ -8,7 +8,14 @@
       </div>
       <v-dialog persistent v-model="dialog" width="500">
         <template v-slot:activator="{ on, attrs }">
-          <v-btn class="submit" color="green" dark v-bind="attrs" v-on="on">wyślij</v-btn>
+          <v-btn
+            :disabled="!isEmpty"
+            class="submit"
+            color="green"
+            dark
+            v-bind="attrs"
+            v-on="on"
+          >wyślij</v-btn>
         </template>
 
         <v-card>
@@ -24,6 +31,9 @@
         </v-card>
       </v-dialog>
     </div>
+    <v-card v-if="isSaved" class="saved" outlined>
+      <h2>Twoje zgłoszenia</h2>
+    </v-card>
     <v-snackbar color="success" v-model="snackbar" top right timeout="2000">Wysłano wiadomość!</v-snackbar>
     <v-snackbar
       color="error"
@@ -50,6 +60,7 @@ export default {
       snackbarError: false,
       dialog: false,
       editorData: this.$store.state.feedbackData,
+      savedPosts: [],
     };
   },
   beforeDestroy() {
@@ -57,11 +68,6 @@ export default {
   },
   methods: {
     send() {
-      if (this.editorData == "") {
-        this.dialog = false;
-        this.snackbarError = true;
-        return false;
-      }
       let data = {
         content: this.editorData,
         timestamp: firebase.firestore.Timestamp.now(),
@@ -72,7 +78,14 @@ export default {
       this.dialog = false;
     },
   },
-  mounted() {},
+  computed: {
+    isSaved() {
+      return localStorage.getItem("feedbackDocId") ? true : false;
+    },
+    isEmpty() {
+      return this.editorData.length > 0;
+    },
+  },
 };
 </script>
 
@@ -88,5 +101,11 @@ export default {
   margin-right: 0;
   float: right;
   color: white !important;
+}
+
+.saved {
+  margin: 25px;
+  margin-top: 76px;
+  padding: 10px;
 }
 </style>

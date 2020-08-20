@@ -18,6 +18,16 @@
         <v-toolbar-title>{{ timestampDate }}</v-toolbar-title>
       </v-toolbar>
       <v-card style="padding: 15px;">
+        <!-- <v-tabs background-color="blue darken-4" dark grow v-model="tab">
+          <v-tab>zawartość</v-tab>
+          <v-tab>konwersacja</v-tab>
+        </v-tabs>
+        <v-tabs-items v-model="tab">
+          <v-tab-item>
+            
+          </v-tab-item>
+          <v-tab-item></v-tab-item>
+        </v-tabs-items>-->
         <div class="dialogContent ql-editor" v-html="content"></div>
       </v-card>
     </v-dialog>
@@ -37,6 +47,7 @@ export default {
   data() {
     return {
       feedbackPosts: [],
+      tab: 0,
       dialog: false,
       timestamp: "",
       timestampDate: "",
