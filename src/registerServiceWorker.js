@@ -4,9 +4,10 @@ import { register } from "register-service-worker";
 // import * as firebase from "firebase/app";
 // import "firebase/firestore";
 
-// const publicVapidKey =
-//   "BMg_znobAkM0cS5zgjA0XP1SLkgRVV1NJowHg1VgImg1uQEpqJwbAWz3YgI-XbcP5lY5n395g-l3sPilLJm6ki4";
-// const privateVapidKey = "HkIcMIXmPjguydbEidqXBmyLMN1BNvt8RjG4sSYAQkU";
+//let webpush = require("web-push");
+//prettier-ignore
+//const publicVapidKey = "BMg_znobAkM0cS5zgjA0XP1SLkgRVV1NJowHg1VgImg1uQEpqJwbAWz3YgI-XbcP5lY5n395g-l3sPilLJm6ki4";
+//const privateVapidKey = "HkIcMIXmPjguydbEidqXBmyLMN1BNvt8RjG4sSYAQkU";
 
 //if (process.env.NODE_ENV === "production") {
 register(`${process.env.BASE_URL}service-worker.js`, {
@@ -15,6 +16,9 @@ register(`${process.env.BASE_URL}service-worker.js`, {
       "App is being served from cache by a service worker.\n" +
         "For more details, visit https://goo.gl/AFskqB"
     );
+    // reg.pushManager.getSubscription().then((sub) => {
+    //   if (sub) sub.unsubscribe();
+    // });
     // reg.pushManager
     //   .subscribe({
     //     userVisibleOnly: true,
@@ -31,7 +35,6 @@ register(`${process.env.BASE_URL}service-worker.js`, {
     //     //     p256dh: p256dh,
     //     //   },
     //     // };
-
     //     // firebase
     //     //   .firestore()
     //     //   .collection("feedback")
