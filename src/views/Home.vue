@@ -7,7 +7,7 @@
         <div class="cardContainer">
           <v-card class="card" :class="[$vuetify.theme.dark ? 'darkCard' : 'lightCard']">
             <div class="cardHeader">
-              <v-icon x-large>mdi-newspaper-variant</v-icon>
+              <v-icon x-large>mdi-newspaper</v-icon>
               <h2>Aktualności</h2>
               <p>Bądź na bieżąco</p>
               <router-link to="/blog">

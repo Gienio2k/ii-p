@@ -34,7 +34,7 @@
             link
           >
             <v-list-item-action>
-              <v-icon>mdi-home</v-icon>
+              <v-icon>mdi-newspaper</v-icon>
             </v-list-item-action>
             <v-list-item-content>
               <v-list-item-title>Aktualności</v-list-item-title>
