@@ -4,14 +4,32 @@
       <div class="image"></div>
       <div id="info">
         <h1 class="header">Strona internetowa klasy IIP!</h1>
-        <v-card
-          outlined
-          style="padding: 10px; margin-top: 30px; max-width: 500px; margin-left: auto; margin-right: auto;"
-        >
-          <p
-            style="margin: 0;"
-          >{{ drawer ? 'Po więcej funkcji spójrz na menu po lewej' : 'Po więcej funkcji otwórz menu w lewym górnym rogu'}}</p>
-        </v-card>
+        <div class="cardContainer">
+          <v-card class="card" :class="[$vuetify.theme.dark ? 'darkCard' : 'lightCard']">
+            <div class="cardHeader">
+              <v-icon x-large>mdi-newspaper-variant</v-icon>
+              <h2>Aktualności</h2>
+              <p>Bądź na bieżąco</p>
+              <router-link to="/blog">
+                <v-btn outlined @click="$emit('set-active-page', 'Blog')">Idź</v-btn>
+              </router-link>
+            </div>
+          </v-card>
+          <v-card
+            style="float:right; margin-bottom: 80px;"
+            class="card"
+            :class="[$vuetify.theme.dark ? 'darkCard' : 'lightCard']"
+          >
+            <div class="cardHeader">
+              <v-icon x-large>mdi-comment-quote</v-icon>
+              <h2>Feedback</h2>
+              <p>Wyślij wiadomość do przewodniczącego</p>
+              <router-link to="/feedback">
+                <v-btn outlined @click="$emit('set-active-page', 'Feedback')">Idź</v-btn>
+              </router-link>
+            </div>
+          </v-card>
+        </div>
       </div>
     </div>
   </div>
@@ -47,7 +65,7 @@ export default {
     position: relative;
     z-index: 2;
     padding: 20px;
-    padding-top: 100px;
+    padding-top: 50px;
     background-color: transparent;
     .header {
       width: inherit;
@@ -58,6 +76,40 @@ export default {
     }
     p {
       margin-top: 20px;
+    }
+    .card {
+      margin-top: 40px;
+      padding: 15px;
+      text-align: left;
+      width: 100%;
+      max-width: 400px;
+      @media (min-width: 705px) {
+        margin-left: 20%;
+        margin-right: 20%;
+      }
+      .v-icon {
+        float: left;
+      }
+      h2 {
+        line-height: 40px;
+        margin-left: 50px;
+        text-align: center;
+      }
+      p {
+        text-align: center;
+      }
+      .v-btn {
+        margin-top: 10px;
+        left: 50%;
+        right: 50%;
+        transform: translateX(-50%);
+      }
+    }
+    .lightCard {
+      background-color: #ffffff9f;
+    }
+    .darkCard {
+      background-color: #0000009f;
     }
   }
 }

@@ -22,9 +22,6 @@ if (process.env.NODE_ENV === "development") {
         let endpoint = sub.endpoint;
         let auth = sub.toJSON().keys.auth;
         let p256dh = sub.toJSON().keys.p256dh;
-        console.log("endpoint:", endpoint);
-        console.log("auth:", auth);
-        console.log("p256dh:", p256dh);
         const pushSubscription = {
           endpoint: endpoint,
           keys: {
