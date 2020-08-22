@@ -53,12 +53,10 @@ export default {
     return {
       posts: [],
       loading: true,
+      scrollUnset: true,
     };
   },
   created() {
-    this.$vuetify.goTo(this.$store.state.scroll, {
-      duration: 0,
-    });
     firebase
       .firestore()
       .collection("blog")
@@ -80,6 +78,12 @@ export default {
           });
           this.posts = posts.reverse();
           this.loading = false;
+          if (this.scrollUnset) {
+            this.$vuetify.goTo(this.$store.state.scroll, {
+              duration: 0,
+            });
+            this.scrollUnset = false;
+          }
         },
         (err) => {
           console.log(`Encountered error: ${err}`);

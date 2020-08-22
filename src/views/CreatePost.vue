@@ -24,6 +24,11 @@
         <vue-editor v-model="contentData"></vue-editor>
       </div>
     </div>
+    <div class="saveBtns">
+      <v-btn text @click="restore">przywróć z pamięci lokalnej</v-btn>
+      <v-spacer></v-spacer>
+      <v-btn :disabled="!contentUnsaved" text @click="save">zapisz w pamięci lokalnej</v-btn>
+    </div>
     <div class="btns d-flex justify-center">
       <v-btn :disabled="!unsaved" color="blue darken-4" @click="dialog = true">podgląd</v-btn>
     </div>
@@ -111,8 +116,7 @@
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
-import "../utils/toBase64";
-import { toBase64 } from "../utils/toBase64";
+import toBase64 from "../utils/toBase64";
 //import Cookie from "../utils/cookie.js";
 
 export default {
@@ -157,6 +161,9 @@ export default {
     // );
   },
   computed: {
+    contentUnsaved() {
+      return this.contentData.length > 0;
+    },
     unsaved() {
       return (
         this.titleData.length > 0 ||
@@ -182,6 +189,22 @@ export default {
     },
   },
   methods: {
+    save() {
+      localStorage.setItem(
+        "postData",
+        JSON.stringify({
+          titleData: this.titleData,
+          contentData: this.contentData,
+          image: this.image,
+        })
+      );
+    },
+    restore() {
+      let data = JSON.parse(localStorage.getItem("postData"));
+      this.titleData = data.titleData;
+      this.contentData = data.contentData;
+      this.image = data.image;
+    },
     send() {
       firebase
         .firestore()
@@ -238,5 +261,19 @@ export default {
 
 .btns {
   margin-bottom: 20px;
+  .v-btn {
+    margin: 10px;
+  }
+}
+
+.saveBtns {
+  width: 100%;
+
+  .v-btn {
+    left: 50%;
+    right: 50%;
+    transform: translateX(-50%);
+    margin: 2px;
+  }
 }
 </style>

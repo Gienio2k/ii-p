@@ -66,6 +66,9 @@ export default {
   beforeDestroy() {
     this.$store.state.feedbackData = this.editorData;
   },
+  created() {
+    this.$store.commit("setState", { name: "scroll", val: 0 });
+  },
   methods: {
     send() {
       let data = {

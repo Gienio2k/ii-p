@@ -23,6 +23,9 @@ export default {
       authenticated: false,
     };
   },
+  created() {
+    this.$store.commit("setState", { name: "scroll", val: 0 });
+  },
   beforeCreate() {
     let altThis = this;
     firebase.auth().onAuthStateChanged(function (user) {

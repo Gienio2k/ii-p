@@ -86,7 +86,7 @@
 
     <v-main>
       <br />
-      <router-view :drawer="drawer" />
+      <router-view :drawer="drawer" @set-active-page="(page) => {this.activePage = page}" />
     </v-main>
   </v-app>
 </template>

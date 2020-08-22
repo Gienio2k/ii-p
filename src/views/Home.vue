@@ -42,6 +42,9 @@ export default {
   name: "Home",
   components: {},
   props: ["drawer"],
+  created() {
+    this.$store.commit("setState", { name: "scroll", val: 0 });
+  },
 };
 </script>
 
